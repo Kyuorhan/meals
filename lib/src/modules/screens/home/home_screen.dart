@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../data/dummy_data.dart';
+import '../../../data/dummy_categories_data.dart';
 import '../../../shared/themes/app_colors.dart';
 import '../../../shared/themes/app_text_style.dart';
 import '../../../shared/widgets/category_itens_widget.dart';
