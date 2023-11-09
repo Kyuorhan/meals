@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../data/dummy_data.dart';
 import '../../../shared/models/category_model.dart';
 import '../../../shared/themes/app_colors.dart';
 import '../../../shared/themes/app_text_style.dart';
@@ -9,8 +10,12 @@ class RevenuesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final categoryModel =
+    final category =
         ModalRoute.of(context)?.settings.arguments as CategoryModel;
+    final categoryMeal = dummyMeals.where((meal) {
+      return meal.categories.contains(category.id);
+    }).toList();
+
     return Scaffold(
       backgroundColor: AppColors.shape,
       appBar: AppBar(
@@ -24,12 +29,17 @@ class RevenuesScreen extends StatelessWidget {
           ),
         ),
         title: Text(
-          categoryModel.title,
+          category.title,
           style: TextStyles.titleHome,
         ),
       ),
       body: Center(
-        child: Text('Receitas por Categoria ${categoryModel.id}'),
+        child: ListView.builder(
+          itemCount: categoryMeal.length,
+          itemBuilder: (ctx, index) {
+            return Text(categoryMeal[index].title);
+          },
+        ),
       ),
     );
   }
