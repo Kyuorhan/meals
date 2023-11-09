@@ -1,4 +1,60 @@
-import 'package:meals/src/shared/models/meal_model.dart';
+import 'package:flutter/material.dart';
+
+import '../shared/models/category_model.dart';
+import '../shared/models/meal_model.dart';
+
+const dummyCategories = [
+  CategoryModel(
+    id: 'c1',
+    title: 'Italiano',
+    color: Colors.purple,
+  ),
+  CategoryModel(
+    id: 'c2',
+    title: 'Rápido & Fácil',
+    color: Colors.red,
+  ),
+  CategoryModel(
+    id: 'c3',
+    title: 'Hamburgers',
+    color: Colors.orange,
+  ),
+  CategoryModel(
+    id: 'c4',
+    title: 'Alemã',
+    color: Colors.amber,
+  ),
+  CategoryModel(
+    id: 'c5',
+    title: 'Leve & Saudável',
+    color: Colors.indigo,
+  ),
+  CategoryModel(
+    id: 'c6',
+    title: 'Exótica',
+    color: Colors.green,
+  ),
+  CategoryModel(
+    id: 'c7',
+    title: 'Café da Manhã',
+    color: Colors.lightBlue,
+  ),
+  CategoryModel(
+    id: 'c8',
+    title: 'Asiática',
+    color: Colors.lightGreen,
+  ),
+  CategoryModel(
+    id: 'c9',
+    title: 'Francesa',
+    color: Colors.pink,
+  ),
+  CategoryModel(
+    id: 'c10',
+    title: 'Verão',
+    color: Colors.teal,
+  ),
+];
 
 const dummyMeals = [
   MealModel(
@@ -34,8 +90,8 @@ const dummyMeals = [
   ),
   MealModel(
     id: 'm2',
-    categories: ['c2'],
     title: 'Toast Hawaii',
+    categories: ['c2'],
     ingredients: [
       '1 Slice White Bread',
       '1 Slice Ham',
@@ -60,8 +116,8 @@ const dummyMeals = [
   ),
   MealModel(
     id: 'm3',
-    categories: ['c2', 'c3'],
     title: 'Classic Hamburger',
+    categories: ['c2', 'c3'],
     ingredients: [
       '300g Cattle Hack',
       '1 Tomato',
@@ -89,8 +145,8 @@ const dummyMeals = [
   ),
   MealModel(
     id: 'm4',
-    categories: ['c4'],
     title: 'Wiener Schnitzel',
+    categories: ['c4'],
     ingredients: [
       '8 Veal Cutlets',
       '4 Eggs',
@@ -122,8 +178,8 @@ const dummyMeals = [
   ),
   MealModel(
     id: 'm5',
-    categories: ['c2', 'c5', 'c10'],
     title: 'Salad with Smoked Salmon',
+    categories: ['c2', 'c5', 'c10'],
     ingredients: [
       'Arugula',
       'Lamb\'s Lettuce',
@@ -154,8 +210,8 @@ const dummyMeals = [
   ),
   MealModel(
     id: 'm6',
-    categories: ['c6', 'c10'],
     title: 'Delicious Orange Mousse',
+    categories: ['c6', 'c10'],
     ingredients: [
       '4 Sheets of Gelatine',
       '150ml Orange Juice',
@@ -187,8 +243,8 @@ const dummyMeals = [
   ),
   MealModel(
     id: 'm7',
-    categories: ['c7'],
     title: 'Pancakes',
+    categories: ['c7'],
     ingredients: [
       '1 1/2 Cups all-purpose Flour',
       '3 1/2 Teaspoons Baking Powder',
@@ -216,8 +272,8 @@ const dummyMeals = [
   ),
   MealModel(
     id: 'm8',
-    categories: ['c8'],
     title: 'Creamy Indian Chicken Curry',
+    categories: ['c8'],
     ingredients: [
       '4 Chicken Breasts',
       '1 Onion',
@@ -247,8 +303,8 @@ const dummyMeals = [
   ),
   MealModel(
     id: 'm9',
-    categories: ['c9'],
     title: 'Chocolate Souffle',
+    categories: ['c9'],
     ingredients: [
       '1 Teaspoon melted Butter',
       '2 Tablespoons white Sugar',
@@ -294,8 +350,8 @@ const dummyMeals = [
   ),
   MealModel(
     id: 'm10',
-    categories: ['c2', 'c5', 'c10'],
     title: 'Asparagus Salad with Cherry Tomatoes',
+    categories: ['c2', 'c5', 'c10'],
     ingredients: [
       'White and Green Asparagus',
       '30g Pine Nuts',
