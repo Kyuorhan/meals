@@ -4,6 +4,7 @@ import '../../../data/dummy_data.dart';
 import '../../../shared/models/category_model.dart';
 import '../../../shared/themes/app_colors.dart';
 import '../../../shared/themes/app_text_style.dart';
+import '../../../shared/widgets/meal_itens_widget.dart';
 
 class RevenuesScreen extends StatelessWidget {
   const RevenuesScreen({super.key});
@@ -37,7 +38,9 @@ class RevenuesScreen extends StatelessWidget {
         child: ListView.builder(
           itemCount: categoryMeal.length,
           itemBuilder: (ctx, index) {
-            return Text(categoryMeal[index].title);
+            return MealItensWidget(
+              mealModel: categoryMeal[index],
+            );
           },
         ),
       ),

@@ -18,7 +18,7 @@ class MealModel {
   final Complexity complexity;
   final Cost cost;
 
-  final String? imgUrl;
+  final String imgUrl;
 
   // Constructor basico
   // Aonde vai ser usado para inicializar
@@ -37,4 +37,30 @@ class MealModel {
     required this.cost,
     required this.imgUrl,
   });
+
+  String get complexityText {
+    switch (complexity) {
+      case Complexity.simple:
+        return 'Simples';
+      case Complexity.medium:
+        return 'Medium';
+      case Complexity.difficult:
+        return 'Dificil';
+      default:
+        return 'Desconhecida';
+    }
+  }
+
+  String get costText {
+    switch (cost) {
+      case Cost.cheap:
+        return 'Barato';
+      case Cost.fair:
+        return 'Justo';
+      case Cost.expensive:
+        return 'Caro';
+      default:
+        return 'Desconhecido';
+    }
+  }
 }
