@@ -44,6 +44,13 @@ class MyApp extends StatelessWidget {
         // "/login": (context) => const LoginPage(),
         // "/barcode_scanner": (context) => const BarcodeScannerPage()
       },
+      // onUnknownRoute: (settings) {
+      //   return MaterialPageRoute(
+      //     builder: (_) {
+      //       return const HomeScreen();
+      //     },
+      //   );
+      // },
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meals/src/shared/themes/app_colors.dart';
 import 'package:meals/src/utils/app_routes.dart';
 
 import '../models/meal_model.dart';
@@ -25,11 +26,11 @@ class MealItensWidget extends StatelessWidget {
     return InkWell(
       onTap: () => _selectMeal(context),
       child: Card(
+        margin: const EdgeInsets.all(10),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15),
         ),
         elevation: 4,
-        margin: const EdgeInsets.all(10),
         child: Column(
           children: [
             Stack(
@@ -75,19 +76,28 @@ class MealItensWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Row(children: [
-                    const Icon(Icons.schedule),
+                    const Icon(Icons.schedule, color: AppColors.primary),
                     const SizedBox(width: 6),
-                    Text('${mealModel.duration} min')
+                    Text(
+                      '${mealModel.duration} min',
+                      style: TextStyles.subTitleMealItens,
+                    )
                   ]),
                   Row(children: [
-                    const Icon(Icons.work),
+                    const Icon(Icons.work, color: AppColors.primary),
                     const SizedBox(width: 6),
-                    Text(mealModel.complexityText)
+                    Text(
+                      mealModel.complexityText,
+                      style: TextStyles.subTitleMealItens,
+                    )
                   ]),
                   Row(children: [
-                    const Icon(Icons.attach_money),
+                    const Icon(Icons.attach_money, color: AppColors.primary),
                     const SizedBox(width: 6),
-                    Text(mealModel.costText)
+                    Text(
+                      mealModel.costText,
+                      style: TextStyles.subTitleMealItens,
+                    )
                   ]),
                 ],
               ),
