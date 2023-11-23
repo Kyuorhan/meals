@@ -24,6 +24,21 @@ class TextStyles {
     fontWeight: FontWeight.w500,
     color: AppColors.background,
   );
+  static final subTitleMealItens = GoogleFonts.lexendDeca(
+    fontSize: 14,
+    fontWeight: FontWeight.w500,
+    color: AppColors.heading,
+  );
+  static final titleMealDetail = GoogleFonts.lexendDeca(
+    fontSize: 18,
+    fontWeight: FontWeight.w500,
+    color: AppColors.background,
+  );
+  static final subTitleMealDetail = GoogleFonts.lexendDeca(
+    fontSize: 14,
+    fontWeight: FontWeight.w500,
+    color: AppColors.background,
+  );
   // static final subTitleCategoryItens = GoogleFonts.inter(
   //   fontSize: 12,
   //   fontWeight: FontWeight.w600,
