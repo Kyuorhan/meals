@@ -22,7 +22,11 @@ class RevenuesScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: AppColors.primary,
         centerTitle: true,
-        iconTheme: const IconThemeData(color: AppColors.background),
+        iconTheme: const IconThemeData(
+          color: AppColors.background,
+          size: 26,
+        ),
+        leadingWidth: 72,
         toolbarHeight: 72,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(

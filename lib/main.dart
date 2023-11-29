@@ -5,6 +5,7 @@ import 'src/modules/screens/home/home_screen.dart';
 import 'src/modules/screens/meal/meal_detail_screen.dart';
 import 'src/modules/screens/revenues/revenues_screen.dart';
 
+import 'src/shared/widgets/tabs_screen.dart';
 import 'src/shared/themes/app_colors.dart';
 import 'src/utils/app_routes.dart';
 
@@ -38,7 +39,7 @@ class MyApp extends StatelessWidget {
       initialRoute: "/home",
       routes: {
         // "/splash": (context) => const SplashPage(),
-        AppRoutes.home: (context) => const HomeScreen(),
+        AppRoutes.home: (context) => const TabsScreen(),
         AppRoutes.revenues: (context) => const RevenuesScreen(),
         AppRoutes.mealDetail: (context) => const MealDetailScreen()
         // "/login": (context) => const LoginPage(),
