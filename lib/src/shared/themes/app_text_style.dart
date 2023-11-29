@@ -5,10 +5,15 @@ import 'app_colors.dart';
 
 class TextStyles {
   static final titleHome = GoogleFonts.lexendDeca(
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: FontWeight.w500,
     color: AppColors.background,
   );
+  // static final subTitleHome = GoogleFonts.lexendDeca(
+  //   fontSize: 15,
+  //   fontWeight: FontWeight.w500,
+  //   color: AppColors.background,
+  // );
   // static final subtitleHome = GoogleFonts.lexendDeca(
   //   fontSize: 14,
   //   fontWeight: FontWeight.w600,
@@ -39,6 +44,17 @@ class TextStyles {
     fontWeight: FontWeight.w500,
     color: AppColors.background,
   );
+  static final titleDrawer = GoogleFonts.lexendDeca(
+    fontSize: 18,
+    fontWeight: FontWeight.w600,
+    color: AppColors.background,
+  );
+  static final subTitleDrawer = GoogleFonts.lexendDeca(
+    fontSize: 15,
+    fontWeight: FontWeight.w500,
+    color: AppColors.heading,
+  );
+
   // static final subTitleCategoryItens = GoogleFonts.inter(
   //   fontSize: 12,
   //   fontWeight: FontWeight.w600,
