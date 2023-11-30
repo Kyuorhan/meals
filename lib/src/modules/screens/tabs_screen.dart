@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../themes/app_colors.dart';
-import '../themes/app_text_style.dart';
-import '../../modules/screens/favorite/favorite_screen.dart';
-import '../../modules/screens/home/home_screen.dart';
-import 'main_drawer_widget.dart';
+import '../../shared/themes/app_colors.dart';
+import '../../shared/themes/app_text_style.dart';
+import 'favorite/favorite_screen.dart';
+import 'home/home_screen.dart';
+import '../../shared/widgets/main_drawer_widget.dart';
 
 class TabsScreen extends StatefulWidget {
   const TabsScreen({super.key});

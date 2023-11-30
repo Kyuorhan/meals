@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'src/modules/screens/meal/meal_detail_screen.dart';
 import 'src/modules/screens/revenues/revenues_screen.dart';
 
-import 'src/shared/widgets/tabs_screen.dart';
+import 'src/modules/screens/tabs_screen.dart';
 import 'src/shared/themes/app_colors.dart';
 import 'src/utils/app_routes.dart';
 
