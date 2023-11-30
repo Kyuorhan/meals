@@ -33,6 +33,7 @@ class MealDetailScreen extends StatelessWidget {
     final mealModel = ModalRoute.of(context)?.settings.arguments as MealModel;
 
     return Scaffold(
+      backgroundColor: AppColors.shape,
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         backgroundColor: AppColors.primary,
@@ -48,6 +49,7 @@ class MealDetailScreen extends StatelessWidget {
         ),
         leadingWidth: 72,
         toolbarHeight: 72,
+        titleSpacing: 2.5,
         title: Text(
           maxLines: 2,
           mealModel.title,
@@ -66,7 +68,7 @@ class MealDetailScreen extends StatelessWidget {
           ),
           Container(
             padding: const EdgeInsets.only(
-                top: 130, left: 10, right: 10, bottom: 10),
+                top: 125, left: 10, right: 10, bottom: 10),
             child: Card(
               color: Colors.black26,
               shadowColor: Colors.black26,
