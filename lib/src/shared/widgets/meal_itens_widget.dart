@@ -26,7 +26,7 @@ class MealItensWidget extends StatelessWidget {
     return InkWell(
       onTap: () => _selectMeal(context),
       child: Card(
-        margin: const EdgeInsets.all(10),
+        margin: const EdgeInsets.only(left: 12, top: 15, right: 12, bottom: 2),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15),
         ),
@@ -48,7 +48,7 @@ class MealItensWidget extends StatelessWidget {
                   ),
                 ),
                 Positioned(
-                  right: 10,
+                  right: 0,
                   bottom: 20,
                   child: Container(
                     decoration: const BoxDecoration(
@@ -57,7 +57,7 @@ class MealItensWidget extends StatelessWidget {
                     ),
                     width: mySize.width * 0.75,
                     padding: const EdgeInsets.symmetric(
-                      vertical: 5,
+                      vertical: 8.5,
                       horizontal: 20,
                     ),
                     child: Text(
