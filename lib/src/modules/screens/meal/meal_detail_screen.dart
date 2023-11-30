@@ -19,12 +19,8 @@ class MealDetailScreen extends StatelessWidget {
 
   Widget _createSectionContainer(Widget child) {
     return Container(
-      width: 300,
-      height: 250,
-      padding: const EdgeInsets.all(15),
-      // margin: const EdgeInsets.all(5),
+      padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-          // color: Colors.white10,
           border: Border.all(color: Colors.white70),
           borderRadius: BorderRadius.circular(10)),
       child: child,
@@ -41,13 +37,17 @@ class MealDetailScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: AppColors.primary,
         centerTitle: true,
-        iconTheme: const IconThemeData(color: AppColors.background),
-        toolbarHeight: 72,
+        iconTheme: const IconThemeData(
+          color: AppColors.background,
+          size: 26,
+        ),
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
             bottom: Radius.circular(32),
           ),
         ),
+        leadingWidth: 72,
+        toolbarHeight: 72,
         title: Text(
           maxLines: 2,
           mealModel.title,
@@ -66,7 +66,7 @@ class MealDetailScreen extends StatelessWidget {
           ),
           Container(
             padding: const EdgeInsets.only(
-                top: 125, left: 10, right: 10, bottom: 10),
+                top: 130, left: 10, right: 10, bottom: 10),
             child: Card(
               color: Colors.black26,
               shadowColor: Colors.black26,
@@ -74,51 +74,60 @@ class MealDetailScreen extends StatelessWidget {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(15),
               ),
-              semanticContainer: true,
-              elevation: 4,
-              child: SingleChildScrollView(
+              child: Container(
+                margin: const EdgeInsets.only(left: 35, right: 35, bottom: 35),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     _createSectionTitle(context, 'Ingredientes'),
-                    _createSectionContainer(
-                      ListView.builder(
-                        padding: const EdgeInsets.only(top: 0),
-                        itemCount: mealModel.ingredients.length,
-                        itemBuilder: (context, index) {
-                          return Card(
-                            color: AppColors.primary,
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                vertical: 5,
-                                horizontal: 10,
+                    Flexible(
+                      flex: 2,
+                      child: _createSectionContainer(
+                        ListView.builder(
+                          padding: const EdgeInsets.only(top: 0),
+                          itemCount: mealModel.ingredients.length,
+                          itemBuilder: (context, index) {
+                            return Card(
+                              color: AppColors.primary,
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 8,
+                                  horizontal: 10,
+                                ),
+                                child: Text(
+                                  mealModel.ingredients[index],
+                                  style: TextStyles.subTitleMealDetail,
+                                ),
                               ),
-                              child: Text(
-                                mealModel.ingredients[index],
-                                style: TextStyles.subTitleMealDetail,
-                              ),
-                            ),
-                          );
-                        },
+                            );
+                          },
+                        ),
                       ),
                     ),
                     _createSectionTitle(context, 'Passos'),
-                    _createSectionContainer(
-                      ListView.builder(
-                        padding: const EdgeInsets.only(top: 0),
-                        itemCount: mealModel.steps.length,
-                        itemBuilder: (context, index) {
-                          return ListTile(
-                            leading: CircleAvatar(
-                              backgroundColor: AppColors.primary,
-                              child: Text('${index + 1}'),
-                            ),
-                            title: Text(
-                              mealModel.steps[index],
-                              style: TextStyles.subTitleMealDetail,
-                            ),
-                          );
-                        },
+                    Flexible(
+                      flex: 3,
+                      child: _createSectionContainer(
+                        ListView.builder(
+                          padding: const EdgeInsets.only(top: 0),
+                          itemCount: mealModel.steps.length,
+                          itemBuilder: (context, index) {
+                            return ListTile(
+                              // minLeadingWidth: 1.0,
+                              contentPadding: const EdgeInsets.symmetric(
+                                vertical: 2,
+                                horizontal: 2,
+                              ),
+                              leading: CircleAvatar(
+                                backgroundColor: AppColors.primary,
+                                child: Text('${index + 1}'),
+                              ),
+                              title: Text(
+                                mealModel.steps[index],
+                                style: TextStyles.subTitleMealDetail,
+                              ),
+                            );
+                          },
+                        ),
                       ),
                     ),
                   ],

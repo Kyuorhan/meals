@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'src/modules/screens/home/home_screen.dart';
+// import 'src/modules/screens/home/home_screen.dart';
 import 'src/modules/screens/meal/meal_detail_screen.dart';
 import 'src/modules/screens/revenues/revenues_screen.dart';
 
