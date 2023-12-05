@@ -89,7 +89,7 @@ class MealDetailScreen extends StatelessWidget {
                           itemCount: mealModel.ingredients.length,
                           itemBuilder: (context, index) {
                             return Card(
-                              color: AppColors.primary,
+                              color: AppColors.secundary,
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(
                                   vertical: 8,
@@ -97,7 +97,7 @@ class MealDetailScreen extends StatelessWidget {
                                 ),
                                 child: Text(
                                   mealModel.ingredients[index],
-                                  style: TextStyles.subTitleMealDetail,
+                                  style: TextStyles.subTitleMealDetailBlack,
                                 ),
                               ),
                             );
@@ -121,7 +121,11 @@ class MealDetailScreen extends StatelessWidget {
                               ),
                               leading: CircleAvatar(
                                 backgroundColor: AppColors.primary,
-                                child: Text('${index + 1}'),
+                                child: Text(
+                                  '${index + 1}',
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.w600),
+                                ),
                               ),
                               title: Text(
                                 mealModel.steps[index],
@@ -138,6 +142,16 @@ class MealDetailScreen extends StatelessWidget {
             ),
           ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: AppColors.secundary,
+        onPressed: () {
+          Navigator.of(context).pop(mealModel.title);
+        },
+        child: const Icon(
+          Icons.star,
+          // color: AppColors.background,
+        ),
       ),
     );
   }

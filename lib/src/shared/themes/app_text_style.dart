@@ -44,6 +44,11 @@ class TextStyles {
     fontWeight: FontWeight.w600,
     color: AppColors.background,
   );
+  static final subTitleMealDetailBlack = GoogleFonts.lexendDeca(
+    fontSize: 15,
+    fontWeight: FontWeight.w600,
+    color: AppColors.black,
+  );
   static final titleDrawer = GoogleFonts.lexendDeca(
     fontSize: 18,
     fontWeight: FontWeight.w600,
@@ -54,7 +59,16 @@ class TextStyles {
     fontWeight: FontWeight.w500,
     color: AppColors.heading,
   );
-
+  static final titleSettings = GoogleFonts.lexendDeca(
+    fontSize: 16,
+    fontWeight: FontWeight.w500,
+    color: AppColors.primary,
+  );
+  static final subTitleSettings = GoogleFonts.lexendDeca(
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+    // color: AppColors.heading,
+  );
   // static final subTitleCategoryItens = GoogleFonts.inter(
   //   fontSize: 12,
   //   fontWeight: FontWeight.w600,
