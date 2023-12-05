@@ -26,7 +26,7 @@ class CategoryItensWidget extends StatelessWidget {
       onTap: () => _selectRevenues(context),
       splashColor: Theme.of(context).primaryColor,
       child: Container(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
           gradient: LinearGradient(colors: [
