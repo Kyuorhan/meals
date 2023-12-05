@@ -59,7 +59,16 @@ class TextStyles {
     fontWeight: FontWeight.w500,
     color: AppColors.heading,
   );
-
+  static final titleSettings = GoogleFonts.lexendDeca(
+    fontSize: 16,
+    fontWeight: FontWeight.w500,
+    color: AppColors.primary,
+  );
+  static final subTitleSettings = GoogleFonts.lexendDeca(
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+    // color: AppColors.heading,
+  );
   // static final subTitleCategoryItens = GoogleFonts.inter(
   //   fontSize: 12,
   //   fontWeight: FontWeight.w600,
