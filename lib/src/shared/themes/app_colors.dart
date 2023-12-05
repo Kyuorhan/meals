@@ -5,7 +5,7 @@ class AppColors {
   static const primary = Color(0xFFE94D67);
   static const secundary = Color(0xFFFFC107);
   static const delete = Color(0xFFE83F5B);
-  static const select = Color(0xFFFFC107);
+  static const selected = Color(0xFFFFC107);
   static const heading = Color(0xFF585666);
   static const body = Color(0xFF706E7A);
   static const drawer = Color(0xFFE94D67);

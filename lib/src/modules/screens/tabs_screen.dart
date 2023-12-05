@@ -59,7 +59,7 @@ class _TabsScreenState extends State<TabsScreen> {
       body: (_screens[_selectedScreenIndex]['screen'] as Widget),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: AppColors.primary,
-        selectedItemColor: AppColors.select,
+        selectedItemColor: AppColors.selected,
         unselectedItemColor: AppColors.background,
         iconSize: 26,
         onTap: _selectScreen,
