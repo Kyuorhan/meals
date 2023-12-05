@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../shared/themes/app_colors.dart';
 import '../../../shared/themes/app_text_style.dart';
+import '../../../shared/widgets/main_drawer_widget.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
@@ -28,6 +29,7 @@ class SettingsScreen extends StatelessWidget {
           style: TextStyles.titleHome,
         ),
       ),
+      drawer: const MainDrawerWidget(),
       body: const Center(
         child: Text('Configuraçôes'),
       ),
