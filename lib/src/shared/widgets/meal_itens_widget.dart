@@ -14,10 +14,12 @@ class MealItensWidget extends StatelessWidget {
   final MealModel mealModel;
 
   void _selectMeal(BuildContext context) {
-    Navigator.of(context).pushNamed(
-      AppRoutes.mealDetail,
-      arguments: mealModel,
-    );
+    Navigator.of(context)
+        .pushNamed(
+          AppRoutes.mealDetail,
+          arguments: mealModel,
+        )
+        .then((result) => {});
   }
 
   @override

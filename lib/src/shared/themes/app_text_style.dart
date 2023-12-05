@@ -44,6 +44,11 @@ class TextStyles {
     fontWeight: FontWeight.w600,
     color: AppColors.background,
   );
+  static final subTitleMealDetailBlack = GoogleFonts.lexendDeca(
+    fontSize: 15,
+    fontWeight: FontWeight.w600,
+    color: AppColors.black,
+  );
   static final titleDrawer = GoogleFonts.lexendDeca(
     fontSize: 18,
     fontWeight: FontWeight.w600,
