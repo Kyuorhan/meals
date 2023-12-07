@@ -5,8 +5,8 @@ import '../../utils/app_routes.dart';
 import '../models/category_model.dart';
 import '../themes/app_text_style.dart';
 
-class CategoryItensWidget extends StatelessWidget {
-  const CategoryItensWidget({
+class CategoryItemsWidget extends StatelessWidget {
+  const CategoryItemsWidget({
     super.key,
     required this.categoryModel,
   });
