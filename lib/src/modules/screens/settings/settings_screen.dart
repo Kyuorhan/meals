@@ -6,7 +6,12 @@ import '../../../shared/themes/app_text_style.dart';
 import '../../../shared/widgets/main_drawer_widget.dart';
 
 class SettingsScreen extends StatefulWidget {
-  const SettingsScreen({super.key});
+  const SettingsScreen({
+    super.key,
+    required this.onSettingsChanged,
+  });
+
+  final Function(SettingsModel) onSettingsChanged;
 
   @override
   State<SettingsScreen> createState() => _SettingsScreenState();
@@ -31,7 +36,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
         style: TextStyles.subTitleSettings,
       ),
       value: value,
-      onChanged: onChanged,
+      onChanged: (value) {
+        onChanged(value);
+        widget.onSettingsChanged(settingsModel);
+      },
     );
   }
 
