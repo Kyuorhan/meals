@@ -1,19 +1,24 @@
 import 'package:flutter/material.dart';
 
-import '../../../data/dummy_data.dart';
 import '../../../shared/models/category_model.dart';
+import '../../../shared/models/meal_model.dart';
 import '../../../shared/themes/app_colors.dart';
 import '../../../shared/themes/app_text_style.dart';
-import '../../../shared/widgets/meal_itens_widget.dart';
+import '../../../shared/widgets/meal_items_widget.dart';
 
 class CategoryScreen extends StatelessWidget {
-  const CategoryScreen({super.key});
+  const CategoryScreen({
+    super.key,
+    required this.mealNodel,
+  });
+
+  final List<MealModel> mealNodel;
 
   @override
   Widget build(BuildContext context) {
     final category =
         ModalRoute.of(context)?.settings.arguments as CategoryModel;
-    final categoryMeal = dummyMeals.where((meal) {
+    final categoryMeal = mealNodel.where((meal) {
       return meal.categories.contains(category.id);
     }).toList();
 
@@ -42,7 +47,7 @@ class CategoryScreen extends StatelessWidget {
         child: ListView.builder(
           itemCount: categoryMeal.length,
           itemBuilder: (ctx, index) {
-            return MealItensWidget(
+            return MealItemsWidget(
               mealModel: categoryMeal[index],
             );
           },
