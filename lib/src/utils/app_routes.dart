@@ -1,6 +1,6 @@
 class AppRoutes {
   static const home = '/home';
+  static const category = '/category';
   static const revenues = '/revenues';
-  static const mealDetail = '/mealDetail';
   static const settings = '/settings';
 }
