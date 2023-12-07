@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../shared/models/settings.dart';
+import '../../../shared/models/settings_model.dart';
 import '../../../shared/themes/app_colors.dart';
 import '../../../shared/themes/app_text_style.dart';
 import '../../../shared/widgets/main_drawer_widget.dart';
@@ -22,10 +22,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
     Function(bool) onChanged,
   ) {
     return SwitchListTile.adaptive(
-      contentPadding: const EdgeInsets.symmetric(vertical: 5, horizontal: 25),
-      activeColor: AppColors.delete,
+      contentPadding:
+          const EdgeInsets.symmetric(vertical: 5 / 0.75, horizontal: 25 / 0.75),
+      activeColor: AppColors.primary,
       title: Text(title, style: TextStyles.titleSettings),
-      subtitle: Text(subTitle, style: TextStyles.subTitleSettings),
+      subtitle: Text(
+        subTitle,
+        style: TextStyles.subTitleSettings,
+      ),
       value: value,
       onChanged: onChanged,
     );

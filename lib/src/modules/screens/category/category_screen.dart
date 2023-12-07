@@ -6,8 +6,8 @@ import '../../../shared/themes/app_colors.dart';
 import '../../../shared/themes/app_text_style.dart';
 import '../../../shared/widgets/meal_itens_widget.dart';
 
-class RevenuesScreen extends StatelessWidget {
-  const RevenuesScreen({super.key});
+class CategoryScreen extends StatelessWidget {
+  const CategoryScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
