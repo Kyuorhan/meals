@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:meals/src/shared/themes/app_colors.dart';
 
 import '../../utils/app_routes.dart';
 import '../models/category_model.dart';
 import '../themes/app_text_style.dart';
 
-class CategoryItensWidget extends StatelessWidget {
-  const CategoryItensWidget({
+class CategoryItemsWidget extends StatelessWidget {
+  const CategoryItemsWidget({
     super.key,
     required this.categoryModel,
   });
@@ -14,7 +15,7 @@ class CategoryItensWidget extends StatelessWidget {
 
   void _selectRevenues(BuildContext context) {
     Navigator.of(context).pushNamed(
-      AppRoutes.revenues,
+      AppRoutes.category,
       arguments: categoryModel,
     );
   }
@@ -29,10 +30,14 @@ class CategoryItensWidget extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
-          gradient: LinearGradient(colors: [
-            categoryModel.color.withOpacity(0.5),
-            categoryModel.color,
-          ], begin: Alignment.topLeft, end: Alignment.bottomRight),
+          gradient: LinearGradient(
+            colors: [
+              categoryModel.color.withOpacity(0.5),
+              categoryModel.color,
+            ],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
         ),
         child: Text(
           categoryModel.title,

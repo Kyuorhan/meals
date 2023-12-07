@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:meals/src/shared/themes/app_colors.dart';
-import 'package:meals/src/utils/app_routes.dart';
 
+import '../../utils/app_routes.dart';
 import '../models/meal_model.dart';
+import '../themes/app_colors.dart';
 import '../themes/app_text_style.dart';
 
-class MealItensWidget extends StatelessWidget {
-  const MealItensWidget({
+class MealItemsWidget extends StatelessWidget {
+  const MealItemsWidget({
     super.key,
     required this.mealModel,
   });
@@ -16,7 +16,7 @@ class MealItensWidget extends StatelessWidget {
   void _selectMeal(BuildContext context) {
     Navigator.of(context)
         .pushNamed(
-          AppRoutes.mealDetail,
+          AppRoutes.revenues,
           arguments: mealModel,
         )
         .then((result) => {});
