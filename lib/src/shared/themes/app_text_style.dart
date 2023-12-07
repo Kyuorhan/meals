@@ -65,7 +65,7 @@ class TextStyles {
     color: AppColors.primary,
   );
   static final subTitleSettings = GoogleFonts.lexendDeca(
-    fontSize: 14,
+    fontSize: 15,
     fontWeight: FontWeight.w400,
     // color: AppColors.heading,
   );
