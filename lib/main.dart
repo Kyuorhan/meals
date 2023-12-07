@@ -9,6 +9,7 @@ import 'src/modules/screens/settings/settings_screen.dart';
 import 'src/modules/screens/tabs_screen.dart';
 
 import 'src/shared/models/meal_model.dart';
+import 'src/shared/models/settings_model.dart';
 import 'src/shared/themes/app_colors.dart';
 import 'src/utils/app_routes.dart';
 
@@ -24,7 +25,25 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final List<MealModel> _availableMeals = dummyMeals;
+  List<MealModel> _availableMeals = dummyMeals;
+
+  void _filterMeals(SettingsModel settings) {
+    setState(() {
+      _availableMeals = dummyMeals.where((mealModel) {
+        final filterGluten = settings.isGlutenFree && !mealModel.isGlutenFree;
+        final filterLactose =
+            settings.isLactoseFree && !mealModel.isLactoseFree;
+        final filterVegan = settings.isVegan && !mealModel.isVegan;
+        final filterVegetarian =
+            settings.isVegetarian && !mealModel.isVegetarian;
+
+        return !filterGluten &&
+            !filterLactose &&
+            !filterVegan &&
+            !filterVegetarian;
+      }).toList();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +51,6 @@ class _MyAppState extends State<MyApp> {
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
-
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(
           statusBarColor: AppColors.primary,
@@ -53,7 +71,9 @@ class _MyAppState extends State<MyApp> {
         AppRoutes.category: (context) =>
             CategoryScreen(mealNodel: _availableMeals),
         AppRoutes.revenues: (context) => const RevenuesDetailScreen(),
-        AppRoutes.settings: (context) => const SettingsScreen(),
+        AppRoutes.settings: (context) => SettingsScreen(
+              onSettingsChanged: _filterMeals,
+            ),
         // "/login": (context) => const LoginPage(),
         // "/barcode_scanner": (context) => const BarcodeScannerPage()
       },

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:meals/src/shared/themes/app_colors.dart';
 
 import '../../utils/app_routes.dart';
 import '../models/category_model.dart';
