@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
 
+import '../../shared/models/meal_model.dart';
 import '../../shared/themes/app_colors.dart';
 import '../../shared/themes/app_text_style.dart';
-import 'favorite/favorite_screen.dart';
-import 'home/home_screen.dart';
 import '../../shared/widgets/main_drawer_widget.dart';
 
+import 'favorite/favorite_screen.dart';
+import 'home/home_screen.dart';
+
 class TabsScreen extends StatefulWidget {
-  const TabsScreen({super.key});
+  const TabsScreen({
+    super.key,
+    required this.favoriteMeals,
+  });
+
+  final List<MealModel> favoriteMeals;
 
   @override
   State<TabsScreen> createState() => _TabsScreenState();
@@ -16,14 +23,22 @@ class TabsScreen extends StatefulWidget {
 class _TabsScreenState extends State<TabsScreen> {
   int _selectedScreenIndex = 0;
 
-  // final List<Widget> _screens = [
-  //   const HomeScreen(),
-  //   const FavoriteScreen(),
-  // ];
-  final List<Map<String, Object>> _screens = [
-    {'title': 'Lista de Categorias', 'screen': const HomeScreen()},
-    {'title': 'Meus Favoritos', 'screen': const FavoriteScreen()},
-  ];
+  late List<Map<String, Object>> _screens;
+
+  @override
+  void initState() {
+    super.initState();
+    _screens = [
+      {
+        'title': 'Lista de Categorias',
+        'screen': const HomeScreen(),
+      },
+      {
+        'title': 'Meus Favoritos',
+        'screen': FavoriteScreen(favoriteMeals: widget.favoriteMeals),
+      },
+    ];
+  }
 
   _selectScreen(int index) {
     setState(() {
@@ -61,9 +76,9 @@ class _TabsScreenState extends State<TabsScreen> {
         backgroundColor: AppColors.primary,
         selectedItemColor: AppColors.selected,
         unselectedItemColor: AppColors.background,
-        iconSize: 26,
-        onTap: _selectScreen,
         currentIndex: _selectedScreenIndex,
+        onTap: _selectScreen,
+        iconSize: 26,
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.category),

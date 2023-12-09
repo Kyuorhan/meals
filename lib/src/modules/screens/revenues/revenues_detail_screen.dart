@@ -5,7 +5,14 @@ import '../../../shared/themes/app_colors.dart';
 import '../../../shared/themes/app_text_style.dart';
 
 class RevenuesDetailScreen extends StatelessWidget {
-  const RevenuesDetailScreen({super.key});
+  const RevenuesDetailScreen({
+    super.key,
+    required this.onToggleFavorite,
+    required this.isFavorite,
+  });
+
+  final Function(MealModel) onToggleFavorite;
+  final bool Function(MealModel) isFavorite;
 
   Widget _createSectionTitle(BuildContext context, String title) {
     return Container(
@@ -146,13 +153,11 @@ class RevenuesDetailScreen extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: AppColors.secundary,
+        child: Icon(isFavorite(mealModel) ? Icons.star : Icons.star_border),
         onPressed: () {
+          onToggleFavorite(mealModel);
           Navigator.of(context).pop(mealModel.title);
         },
-        child: const Icon(
-          Icons.star,
-          // color: AppColors.background,
-        ),
       ),
     );
   }
