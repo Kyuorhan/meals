@@ -156,7 +156,7 @@ class RevenuesDetailScreen extends StatelessWidget {
         child: Icon(isFavorite(mealModel) ? Icons.star : Icons.star_border),
         onPressed: () {
           onToggleFavorite(mealModel);
-          Navigator.of(context).pop(mealModel.title);
+          // Navigator.of(context).pop(mealModel.title);
         },
       ),
     );
