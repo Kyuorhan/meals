@@ -27,6 +27,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   SettingsModel settings = SettingsModel();
   List<MealModel> _availableMeals = dummyMeals;
+  final List<MealModel> _favoriteMeals = [];
 
   void _filterMeals(SettingsModel settings) {
     setState(() {
@@ -46,6 +47,18 @@ class _MyAppState extends State<MyApp> {
             !filterVegetarian;
       }).toList();
     });
+  }
+
+  void _toggleFavorite(MealModel mealModel) {
+    setState(() {
+      _favoriteMeals.contains(mealModel)
+          ? _favoriteMeals.remove(mealModel)
+          : _favoriteMeals.add(mealModel);
+    });
+  }
+
+  bool _isFavorite(MealModel mealModel) {
+    return _favoriteMeals.contains(mealModel);
   }
 
   @override
@@ -70,10 +83,16 @@ class _MyAppState extends State<MyApp> {
       initialRoute: "/home",
       routes: {
         // "/splash": (context) => const SplashPage(),
-        AppRoutes.home: (context) => const TabsScreen(),
-        AppRoutes.category: (context) =>
-            CategoryScreen(mealNodel: _availableMeals),
-        AppRoutes.revenues: (context) => const RevenuesDetailScreen(),
+        AppRoutes.home: (context) => TabsScreen(
+              favoriteMeals: _favoriteMeals,
+            ),
+        AppRoutes.category: (context) => CategoryScreen(
+              mealNodel: _availableMeals,
+            ),
+        AppRoutes.revenues: (context) => RevenuesDetailScreen(
+              onToggleFavorite: _toggleFavorite,
+              isFavorite: _isFavorite,
+            ),
         AppRoutes.settings: (context) => SettingsScreen(
               settings: settings,
               onSettingsChanged: _filterMeals,
