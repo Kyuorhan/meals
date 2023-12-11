@@ -36,7 +36,7 @@ class RevenuesDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Size mySize = MediaQuery.of(context).size;
+    EdgeInsets myPadding = MediaQuery.of(context).padding;
     final mealModel = ModalRoute.of(context)?.settings.arguments as MealModel;
 
     return Scaffold(
@@ -74,8 +74,14 @@ class RevenuesDetailScreen extends StatelessWidget {
             ),
           ),
           Container(
-            padding: const EdgeInsets.only(
-                top: 125, left: 10, right: 10, bottom: 10),
+            // padding: const EdgeInsets.only(
+            //     top: 125, left: 10, right: 10, bottom: 10),
+            margin: EdgeInsets.only(
+              top: myPadding.top + kToolbarHeight * 1.5,
+              left: 10,
+              right: 10,
+              bottom: 10,
+            ),
             child: Card(
               color: Colors.black26,
               shadowColor: Colors.black26,
@@ -151,14 +157,21 @@ class RevenuesDetailScreen extends StatelessWidget {
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: AppColors.secundary,
-        child: Icon(isFavorite(mealModel) ? Icons.star : Icons.star_border),
-        onPressed: () {
-          onToggleFavorite(mealModel);
-          // Navigator.of(context).pop(mealModel.title);
-        },
+      floatingActionButton: Transform.scale(
+        scale: 1.3,
+        child: FloatingActionButton(
+          backgroundColor: AppColors.secundary,
+          foregroundColor: AppColors.black,
+          elevation: 4,
+          mini: false,
+          child: Icon(isFavorite(mealModel) ? Icons.star : Icons.star_border),
+          onPressed: () {
+            onToggleFavorite(mealModel);
+            // Navigator.of(context).pop(mealModel.title);
+          },
+        ),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
 }
