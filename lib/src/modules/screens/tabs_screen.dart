@@ -5,6 +5,8 @@ import '../../shared/themes/app_colors.dart';
 import '../../shared/themes/app_text_style.dart';
 import '../../shared/widgets/main_drawer_widget.dart';
 
+import '../../utils/app_routes.dart';
+
 import 'favorite/favorite_screen.dart';
 import 'home/home_screen.dart';
 
@@ -57,11 +59,6 @@ class _TabsScreenState extends State<TabsScreen> {
           color: AppColors.background,
           size: 26,
         ),
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            bottom: Radius.circular(32),
-          ),
-        ),
         leadingWidth: 72,
         toolbarHeight: 72,
         title: Text(
@@ -69,8 +66,24 @@ class _TabsScreenState extends State<TabsScreen> {
           // _titles[_selectedScreenIndex],
           style: TextStyles.titleHome,
         ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12),
+            child: IconButton(
+              icon: const Icon(Icons.filter_alt),
+              onPressed: () => Navigator.of(context)
+                  .pushNamed(AppRoutes.settings, arguments: false),
+              tooltip: 'Filter',
+            ),
+          ),
+        ],
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            bottom: Radius.circular(32),
+          ),
+        ),
       ),
-      drawer: const MainDrawerWidget(),
+      drawer: const MainDrawerWidget(isDrawerEnabled: true),
       body: (_screens[_selectedScreenIndex]['screen'] as Widget),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: AppColors.primary,

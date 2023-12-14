@@ -9,6 +9,11 @@ class TextStyles {
     fontWeight: FontWeight.w500,
     color: AppColors.background,
   );
+  static final titleFavorite = GoogleFonts.lexendDeca(
+    fontSize: 15,
+    fontWeight: FontWeight.w600,
+    color: AppColors.heading,
+  );
   // static final subTitleHome = GoogleFonts.lexendDeca(
   //   fontSize: 15,
   //   fontWeight: FontWeight.w500,

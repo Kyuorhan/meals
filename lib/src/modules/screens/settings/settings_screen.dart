@@ -53,6 +53,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final bool isDrawerEnabled =
+        ModalRoute.of(context)?.settings.arguments as bool? ?? false;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.primary,
@@ -61,27 +64,36 @@ class _SettingsScreenState extends State<SettingsScreen> {
           color: AppColors.background,
           size: 26,
         ),
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            bottom: Radius.circular(32),
-          ),
-        ),
         leadingWidth: 72,
         toolbarHeight: 72,
         title: Text(
           'Configuraçôes',
           style: TextStyles.titleHome,
         ),
+        // actions: [
+        //   Padding(
+        //     padding: const EdgeInsets.symmetric(horizontal: 12),
+        //     child: IconButton(
+        //       icon: const Icon(
+        //         Icons.keyboard_control,
+        //       ),
+        //       onPressed: () =>
+        //           Navigator.of(context).pushReplacementNamed(AppRoutes.home),
+        //       tooltip: 'Filter',
+        //     ),
+        //   ),
+        // ],
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            bottom: Radius.circular(32),
+          ),
+        ),
       ),
-      drawer: const MainDrawerWidget(),
+      drawer: isDrawerEnabled
+          ? const MainDrawerWidget(isDrawerEnabled: true)
+          : null,
       body: Column(
         children: [
-          Container(
-              // child: Text(
-              //   'Configurações',
-              //   style: TextStyles.titleSettings,
-              // ),
-              ),
           Expanded(
             child: ListView(
               padding: const EdgeInsets.symmetric(vertical: 10),
