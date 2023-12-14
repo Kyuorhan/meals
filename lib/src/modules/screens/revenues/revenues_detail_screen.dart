@@ -44,7 +44,7 @@ class RevenuesDetailScreen extends StatelessWidget {
             end: Alignment.bottomCenter,
             stops: [
               0.0,
-              0.025,
+              0.015,
               0.0,
               0.89,
               1.0,
