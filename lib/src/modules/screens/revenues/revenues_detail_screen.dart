@@ -30,7 +30,30 @@ class RevenuesDetailScreen extends StatelessWidget {
       decoration: BoxDecoration(
           border: Border.all(color: Colors.white70),
           borderRadius: BorderRadius.circular(10)),
-      child: child,
+      child: ShaderMask(
+        shaderCallback: (Rect rect) {
+          return const LinearGradient(
+            colors: [
+              Colors.purple,
+              Colors.black12,
+              Colors.transparent,
+              Colors.black12,
+              Colors.purple,
+            ],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            stops: [
+              0.0,
+              0.025,
+              0.0,
+              0.89,
+              1.0,
+            ],
+          ).createShader(rect);
+        },
+        blendMode: BlendMode.dstOut,
+        child: child,
+      ),
     );
   }
 
@@ -44,7 +67,6 @@ class RevenuesDetailScreen extends StatelessWidget {
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         backgroundColor: AppColors.primary,
-        centerTitle: true,
         iconTheme: const IconThemeData(
           color: AppColors.background,
           size: 26,
@@ -56,11 +78,12 @@ class RevenuesDetailScreen extends StatelessWidget {
         ),
         leadingWidth: 72,
         toolbarHeight: 72,
-        titleSpacing: 2.5,
+        centerTitle: true,
+        titleSpacing: 0.0,
         title: Text(
-          maxLines: 2,
           mealModel.title,
           style: TextStyles.titleHome,
+          maxLines: 2,
         ),
       ),
       body: Stack(
@@ -74,8 +97,6 @@ class RevenuesDetailScreen extends StatelessWidget {
             ),
           ),
           Container(
-            // padding: const EdgeInsets.only(
-            //     top: 125, left: 10, right: 10, bottom: 10),
             margin: EdgeInsets.only(
               top: myPadding.top + kToolbarHeight * 1.5,
               left: 10,
@@ -101,6 +122,7 @@ class RevenuesDetailScreen extends StatelessWidget {
                         ListView.builder(
                           padding: const EdgeInsets.only(top: 0),
                           itemCount: mealModel.ingredients.length,
+                          clipBehavior: Clip.antiAliasWithSaveLayer,
                           itemBuilder: (context, index) {
                             return Card(
                               color: AppColors.secundary,
