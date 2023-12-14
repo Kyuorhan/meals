@@ -5,7 +5,12 @@ import '../themes/app_colors.dart';
 import '../themes/app_text_style.dart';
 
 class MainDrawerWidget extends StatelessWidget {
-  const MainDrawerWidget({super.key});
+  const MainDrawerWidget({
+    super.key,
+    required this.isDrawerEnabled,
+  });
+
+  final bool isDrawerEnabled;
 
   Widget _createItem(IconData icon, String label, Function() onTap) {
     return ListTile(
@@ -32,6 +37,7 @@ class MainDrawerWidget extends StatelessWidget {
     return Drawer(
       backgroundColor: AppColors.shape,
       surfaceTintColor: AppColors.primary,
+      elevation: 4,
       child: Column(
         children: [
           Container(
@@ -48,13 +54,14 @@ class MainDrawerWidget extends StatelessWidget {
           _createItem(
             Icons.restaurant,
             'Refeições',
-            () => Navigator.of(context).pushReplacementNamed(AppRoutes.home),
+            () => Navigator.of(context)
+                .pushReplacementNamed(AppRoutes.home, arguments: false),
           ),
           _createItem(
             Icons.settings,
             'Configurações',
-            () =>
-                Navigator.of(context).pushReplacementNamed(AppRoutes.settings),
+            () => Navigator.of(context)
+                .pushReplacementNamed(AppRoutes.settings, arguments: true),
           ),
         ],
       ),
