@@ -3,4 +3,5 @@ class AppRoutes {
   static const category = '/category';
   static const revenues = '/revenues';
   static const settings = '/settings';
+  static const splash = '/splash';
 }

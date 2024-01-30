@@ -13,11 +13,9 @@ class CategoryScreen extends StatelessWidget {
   const CategoryScreen({
     super.key,
     required this.mealNodel,
-    // required this.isDrawerEnabled,
   });
 
   final List<MealModel> mealNodel;
-  // final bool isDrawerEnabled;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +29,10 @@ class CategoryScreen extends StatelessWidget {
       backgroundColor: AppColors.shape,
       appBar: AppBar(
         backgroundColor: AppColors.primary,
+        shadowColor: AppColors.shape,
+        surfaceTintColor: AppColors.primary,
         centerTitle: true,
+        elevation: 4,
         iconTheme: const IconThemeData(
           color: AppColors.background,
           size: 26,
@@ -47,9 +48,6 @@ class CategoryScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 12),
             child: IconButton(
               icon: const Icon(Icons.filter_alt),
-              // onPressed: () => () {
-              //   Scaffold.of(context).openDrawer();
-              // },
               onPressed: () => Navigator.of(context)
                   .pushNamed(AppRoutes.settings, arguments: false),
               tooltip: 'Filter',

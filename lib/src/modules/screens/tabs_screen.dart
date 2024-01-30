@@ -37,7 +37,9 @@ class _TabsScreenState extends State<TabsScreen> {
       },
       {
         'title': 'Meus Favoritos',
-        'screen': FavoriteScreen(favoriteMeals: widget.favoriteMeals),
+        'screen': FavoriteScreen(
+          favoriteMeals: widget.favoriteMeals,
+        ),
       },
     ];
   }
@@ -54,7 +56,10 @@ class _TabsScreenState extends State<TabsScreen> {
       backgroundColor: AppColors.shape,
       appBar: AppBar(
         backgroundColor: AppColors.primary,
+        shadowColor: AppColors.shape,
+        surfaceTintColor: AppColors.primary,
         centerTitle: true,
+        elevation: 4,
         iconTheme: const IconThemeData(
           color: AppColors.background,
           size: 26,
@@ -62,7 +67,7 @@ class _TabsScreenState extends State<TabsScreen> {
         leadingWidth: 72,
         toolbarHeight: 72,
         title: Text(
-          (_screens[_selectedScreenIndex]['title'] as String),
+          _screens[_selectedScreenIndex]['title'] as String,
           // _titles[_selectedScreenIndex],
           style: TextStyles.titleHome,
         ),
@@ -84,7 +89,7 @@ class _TabsScreenState extends State<TabsScreen> {
         ),
       ),
       drawer: const MainDrawerWidget(isDrawerEnabled: true),
-      body: (_screens[_selectedScreenIndex]['screen'] as Widget),
+      body: _screens[_selectedScreenIndex]['screen'] as Widget,
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: AppColors.primary,
         selectedItemColor: AppColors.selected,

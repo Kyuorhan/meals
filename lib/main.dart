@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:meals/src/modules/screens/splash/splash_screen.dart';
 
 import 'src/data/dummy_data.dart';
 
@@ -63,14 +64,16 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(
-          statusBarColor: AppColors.primary,
-          systemNavigationBarColor: AppColors.primary),
+        statusBarColor: AppColors.transparent,
+        systemNavigationBarColor: AppColors.transparent,
+      ),
     );
 
     return MaterialApp(
@@ -80,12 +83,13 @@ class _MyAppState extends State<MyApp> {
         primarySwatch: Colors.grey,
         primaryColor: AppColors.primary,
       ),
-      initialRoute: "/home",
+      initialRoute: "/splash",
       routes: {
         // "/splash": (context) => const SplashPage(),
         AppRoutes.home: (context) => TabsScreen(
               favoriteMeals: _favoriteMeals,
             ),
+
         AppRoutes.category: (context) => CategoryScreen(
               mealNodel: _availableMeals,
             ),
@@ -97,6 +101,7 @@ class _MyAppState extends State<MyApp> {
               settings: settings,
               onSettingsChanged: _filterMeals,
             ),
+        AppRoutes.splash: (context) => const SplashScreen(),
         // "/login": (context) => const LoginPage(),
         // "/barcode_scanner": (context) => const BarcodeScannerPage()
       },

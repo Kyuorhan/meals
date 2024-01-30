@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+// import 'package:meals/src/modules/screens/tabs_screen.dart';
+// import 'package:meals/src/utils/app_routes.dart';
 
 import '../../../shared/models/meal_model.dart';
 import '../../../shared/themes/app_colors.dart';
@@ -7,10 +9,12 @@ import '../../../shared/themes/app_text_style.dart';
 class RevenuesDetailScreen extends StatelessWidget {
   const RevenuesDetailScreen({
     super.key,
+    // required this.mealModel,
     required this.onToggleFavorite,
     required this.isFavorite,
   });
 
+  // final MealModel mealModel;
   final Function(MealModel) onToggleFavorite;
   final bool Function(MealModel) isFavorite;
 
@@ -26,7 +30,10 @@ class RevenuesDetailScreen extends StatelessWidget {
 
   Widget _createSectionContainer(Widget child) {
     return Container(
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.symmetric(
+        vertical: 20,
+        horizontal: 20,
+      ),
       decoration: BoxDecoration(
           border: Border.all(color: Colors.white70),
           borderRadius: BorderRadius.circular(10)),
@@ -44,7 +51,7 @@ class RevenuesDetailScreen extends StatelessWidget {
             end: Alignment.bottomCenter,
             stops: [
               0.0,
-              0.025,
+              0.015,
               0.0,
               0.89,
               1.0,
@@ -67,6 +74,10 @@ class RevenuesDetailScreen extends StatelessWidget {
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         backgroundColor: AppColors.primary,
+        shadowColor: AppColors.shape,
+        surfaceTintColor: AppColors.primary,
+        centerTitle: true,
+        elevation: 4,
         iconTheme: const IconThemeData(
           color: AppColors.background,
           size: 26,
@@ -78,7 +89,6 @@ class RevenuesDetailScreen extends StatelessWidget {
         ),
         leadingWidth: 72,
         toolbarHeight: 72,
-        centerTitle: true,
         titleSpacing: 0.0,
         title: Text(
           mealModel.title,
@@ -91,10 +101,12 @@ class RevenuesDetailScreen extends StatelessWidget {
         children: [
           Container(
             padding: const EdgeInsets.only(top: 70),
-            child: Image.network(
-              mealModel.imgUrl,
-              fit: BoxFit.cover,
-            ),
+            child: Opacity(opacity: 0.75,
+              child: Image.network(
+                mealModel.imgUrl,
+                fit: BoxFit.cover,
+              ),
+            )
           ),
           Container(
             margin: EdgeInsets.only(
@@ -103,9 +115,10 @@ class RevenuesDetailScreen extends StatelessWidget {
               right: 10,
               bottom: 10,
             ),
-            child: Card(
+            child: Card(          
               color: Colors.black26,
               shadowColor: Colors.black26,
+              surfaceTintColor: Colors.black26,
               // margin: const EdgeInsets.all(15),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(15),
@@ -125,11 +138,11 @@ class RevenuesDetailScreen extends StatelessWidget {
                           clipBehavior: Clip.antiAliasWithSaveLayer,
                           itemBuilder: (context, index) {
                             return Card(
-                              color: AppColors.secundary,
+                              color: AppColors.primary,                              
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(
                                   vertical: 8,
-                                  horizontal: 10,
+                                  horizontal: 12,
                                 ),
                                 child: Text(
                                   mealModel.ingredients[index],
@@ -160,7 +173,9 @@ class RevenuesDetailScreen extends StatelessWidget {
                                 child: Text(
                                   '${index + 1}',
                                   style: const TextStyle(
-                                      fontWeight: FontWeight.w600),
+                                    fontWeight: FontWeight.w600,
+                                    color: AppColors.secundary,
+                                  ),
                                 ),
                               ),
                               title: Text(
@@ -182,15 +197,19 @@ class RevenuesDetailScreen extends StatelessWidget {
       floatingActionButton: Transform.scale(
         scale: 1.3,
         child: FloatingActionButton(
-          backgroundColor: AppColors.secundary,
-          foregroundColor: AppColors.black,
+          backgroundColor: AppColors.primary,
+          foregroundColor: AppColors.secundary,
+          hoverColor: AppColors.secundary,
+          splashColor: AppColors.shape,        
           elevation: 4,
           mini: false,
-          child: Icon(isFavorite(mealModel) ? Icons.star : Icons.star_border),
           onPressed: () {
+            // Ativa a função onToggleFavorite e passa o mealModel
             onToggleFavorite(mealModel);
-            // Navigator.of(context).pop(mealModel.title);
+            // Retorna o mealModel para a tela anterior (MealItemsWidget)
+            // Navigator.pop(context, mealModel);
           },
+          child: Icon(isFavorite(mealModel) ? Icons.star : Icons.star_border),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,

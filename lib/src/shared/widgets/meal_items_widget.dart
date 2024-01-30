@@ -9,17 +9,21 @@ class MealItemsWidget extends StatelessWidget {
   const MealItemsWidget({
     super.key,
     required this.mealModel,
+    // required this.onToggleFavorite,
   });
 
   final MealModel mealModel;
+  // final Function(MealModel) onToggleFavorite;
 
   void _selectMeal(BuildContext context) {
     Navigator.of(context)
-        .pushNamed(
-          AppRoutes.revenues,
-          arguments: mealModel,
-        )
-        .then((result) => {});
+      .pushNamed(
+        AppRoutes.revenues,
+        arguments: mealModel,
+      )
+      .then((result) => {
+        // Pode adicionar lógica aqui após o retorno da tela RevenuesDetailScreen, se necessário
+      });
   }
 
   @override
@@ -28,11 +32,14 @@ class MealItemsWidget extends StatelessWidget {
     return InkWell(
       onTap: () => _selectMeal(context),
       child: Card(
+        color: AppColors.primary,
+        surfaceTintColor: AppColors.primary,
+        // color: const Color(0xFF44443C),
         margin: const EdgeInsets.only(left: 15, top: 15, right: 15, bottom: 2),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15),
         ),
-        elevation: 4,
+        elevation: 4,        
         child: Column(
           children: [
             Stack(
@@ -42,12 +49,15 @@ class MealItemsWidget extends StatelessWidget {
                     topLeft: Radius.circular(15),
                     topRight: Radius.circular(15),
                   ),
-                  child: Image.network(
+                  child: Opacity(
+                    opacity: 0.75,
+                    child: Image.network(
                     mealModel.imgUrl,
                     height: mySize.height * 0.25,
                     width: double.infinity,
                     fit: BoxFit.cover,
                   ),
+                  )
                 ),
                 Positioned(
                   right: 0,
@@ -78,7 +88,7 @@ class MealItemsWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Row(children: [
-                    const Icon(Icons.schedule, color: AppColors.primary),
+                    const Icon(Icons.schedule, color: AppColors.secundary),
                     const SizedBox(width: 6),
                     Text(
                       '${mealModel.duration} min',
@@ -86,7 +96,7 @@ class MealItemsWidget extends StatelessWidget {
                     )
                   ]),
                   Row(children: [
-                    const Icon(Icons.work, color: AppColors.primary),
+                    const Icon(Icons.work, color: AppColors.secundary),
                     const SizedBox(width: 6),
                     Text(
                       mealModel.complexityText,
@@ -94,7 +104,7 @@ class MealItemsWidget extends StatelessWidget {
                     )
                   ]),
                   Row(children: [
-                    const Icon(Icons.attach_money, color: AppColors.primary),
+                    const Icon(Icons.attach_money, color: AppColors.secundary),
                     const SizedBox(width: 6),
                     Text(
                       mealModel.costText,

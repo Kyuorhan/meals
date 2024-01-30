@@ -37,7 +37,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
     return SwitchListTile.adaptive(
       contentPadding:
           const EdgeInsets.symmetric(vertical: 5 / 0.75, horizontal: 25 / 0.75),
-      activeColor: AppColors.primary,
+      activeColor: AppColors.secundary,
+      activeTrackColor: AppColors.primary,
+      inactiveTrackColor: AppColors.shape,
+      inactiveThumbColor: AppColors.secundary,
+   
       title: Text(title, style: TextStyles.titleSettings),
       subtitle: Text(
         subTitle,
@@ -57,9 +61,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
         ModalRoute.of(context)?.settings.arguments as bool? ?? false;
 
     return Scaffold(
+      backgroundColor: AppColors.shape,
       appBar: AppBar(
         backgroundColor: AppColors.primary,
+        shadowColor: AppColors.shape,
+        surfaceTintColor: AppColors.primary,
         centerTitle: true,
+        elevation: 4,
         iconTheme: const IconThemeData(
           color: AppColors.background,
           size: 26,
@@ -67,7 +75,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
         leadingWidth: 72,
         toolbarHeight: 72,
         title: Text(
-          'Configuraçôes',
+          'Filtros',
           style: TextStyles.titleHome,
         ),
         // actions: [
