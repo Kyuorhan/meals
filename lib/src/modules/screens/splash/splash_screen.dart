@@ -21,15 +21,6 @@ class _SplashScreenState extends State<SplashScreen>
     });
   }
 
-  // @override
-  // void dispose() {
-  //   super.dispose();
-  //   SystemChrome.setEnabledSystemUIMode(
-  //     SystemUiMode.manual,
-  //     overlays: SystemUiOverlay.values,
-  //   );
-  // }
-
   @override
   Widget build(BuildContext context) {
     Size mySize = MediaQuery.of(context).size;

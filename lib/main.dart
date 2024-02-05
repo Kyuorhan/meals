@@ -77,7 +77,7 @@ class _MyAppState extends State<MyApp> {
     );
 
     return MaterialApp(
-      title: 'Meals',
+      title: 'Meals Stations',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.grey,
