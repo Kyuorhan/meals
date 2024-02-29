@@ -25,9 +25,9 @@ class TextStyles {
   //   color: AppColors.background,
   // );
   static final titleCategoryItens = GoogleFonts.lexendDeca(
-    fontSize: 15,
     fontWeight: FontWeight.w500,
     color: AppColors.background,
+    fontSize: 15,
   );
   static final titleMealItens = GoogleFonts.lexendDeca(
     fontSize: 15,

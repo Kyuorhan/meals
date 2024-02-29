@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 import '../../../shared/themes/app_colors.dart';
 import '../../../shared/themes/app_images.dart';
@@ -17,34 +16,10 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   void initState() {
     super.initState();
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-    ]);
-    SystemChrome.setSystemUIOverlayStyle(
-      const SystemUiOverlayStyle(
-        statusBarColor: AppColors.transparent,
-        systemNavigationBarColor: AppColors.transparent,
-      ),
-    );
     Future.delayed(const Duration(seconds: 5), () {
       Navigator.of(context).pushReplacementNamed(AppRoutes.home);
     });
   }
-
-  // @override
-  // void dispose() {
-  //   super.dispose();
-  //   SystemChrome.setSystemUIOverlayStyle(
-  //     const SystemUiOverlayStyle(
-  //       statusBarColor: AppColors.transparent,
-  //       systemNavigationBarColor: AppColors.primary,
-  //     ),
-  //   );
-  //   SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
-  //       overlays: [SystemUiOverlay.top]);
-  // }
 
   @override
   Widget build(BuildContext context) {

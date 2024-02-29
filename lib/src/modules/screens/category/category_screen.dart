@@ -4,8 +4,8 @@ import '../../../shared/models/category_model.dart';
 import '../../../shared/models/meal_model.dart';
 
 import '../../../shared/themes/app_colors.dart';
-import '../../../shared/themes/app_text_style.dart';
 
+import '../../../shared/widgets/custom/custom_statusbars_widget.dart';
 import '../../../shared/widgets/meal_items_widget.dart';
 import '../../../utils/app_routes.dart';
 
@@ -27,40 +27,21 @@ class CategoryScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: AppColors.shape,
-      appBar: AppBar(
-        backgroundColor: AppColors.primary,
-        shadowColor: AppColors.shape,
-        surfaceTintColor: AppColors.primary,
-        centerTitle: true,
-        elevation: 4,
-        iconTheme: const IconThemeData(
-          color: AppColors.background,
-          size: 26,
-        ),
-        leadingWidth: 72,
-        toolbarHeight: 72,
-        title: Text(
-          category.title,
-          style: TextStyles.titleHome,
-        ),
+      extendBodyBehindAppBar: true,
+      appBar: CustomStatusBars(
+        toolbarHeight: MediaQuery.of(context).size.width <= 461 ? 70 : 86,
+        title: category.title,
         actions: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12),
-            child: IconButton(
-              icon: const Icon(Icons.filter_alt),
-              onPressed: () => Navigator.of(context)
-                  .pushNamed(AppRoutes.settings, arguments: false),
-              tooltip: 'Filter',
-            ),
+          CustomAction(
+            icon: const Icon(Icons.filter_alt),
+            onPressed: () => Navigator.of(context)
+                .pushNamed(AppRoutes.filters, arguments: false),
+            tooltip: 'Filters',
           ),
         ],
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            bottom: Radius.circular(32),
-          ),
-        ),
       ),
-      body: Center(
+      body: Padding(
+        padding: const EdgeInsets.only(bottom: 20.0),
         child: ListView.builder(
           itemCount: categoryMeal.length,
           itemBuilder: (ctx, index) {

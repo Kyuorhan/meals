@@ -62,9 +62,9 @@ class MainDrawerWidget extends StatelessWidget {
             Icons.filter_alt,
             'Filtros',
             () => Navigator.of(context)
-                .pushReplacementNamed(AppRoutes.settings, arguments: true),
+                .pushReplacementNamed(AppRoutes.filters, arguments: true),
           ),
-                    _createItem(
+          _createItem(
             Icons.settings,
             'Configurações',
             () => (),

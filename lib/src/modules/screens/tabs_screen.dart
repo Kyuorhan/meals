@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 
 import '../../shared/models/meal_model.dart';
 import '../../shared/themes/app_colors.dart';
-import '../../shared/themes/app_text_style.dart';
+import '../../shared/widgets/custom/custom_navigationbars_widget.dart';
+import '../../shared/widgets/custom/custom_statusbars_widget.dart';
 import '../../shared/widgets/main_drawer_widget.dart';
 
-import '../../utils/app_routes.dart';
-
-import 'favorite/favorite_screen.dart';
-import 'home/home_screen.dart';
+import 'favorite_screen.dart';
+import 'home_screen.dart';
 
 class TabsScreen extends StatefulWidget {
   const TabsScreen({
@@ -23,14 +22,19 @@ class TabsScreen extends StatefulWidget {
 }
 
 class _TabsScreenState extends State<TabsScreen> {
-  int _selectedScreenIndex = 0;
-
+  // late DrawerObserver _navigatorObserver;
   late List<Map<String, Object>> _screens;
+
+  int _selectedScreenIndex = 1;
 
   @override
   void initState() {
     super.initState();
     _screens = [
+      {
+        'title': 'Configuração',
+        'screen': const HomeScreen(),
+      },
       {
         'title': 'Lista de Categorias',
         'screen': const HomeScreen(),
@@ -45,68 +49,43 @@ class _TabsScreenState extends State<TabsScreen> {
   }
 
   _selectScreen(int index) {
-    setState(() {
-      _selectedScreenIndex = index;
-    });
+    if (index == 0) {
+      // Abre a gaveta
+      _scaffoldKey.currentState!.openDrawer();
+    } else {
+      setState(() {
+        _selectedScreenIndex = index;
+      });
+    }
   }
+
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       backgroundColor: AppColors.shape,
-      appBar: AppBar(
-        backgroundColor: AppColors.primary,
-        shadowColor: AppColors.shape,
-        surfaceTintColor: AppColors.primary,
-        centerTitle: true,
-        elevation: 4,
-        iconTheme: const IconThemeData(
-          color: AppColors.background,
-          size: 26,
-        ),
-        leadingWidth: 72,
-        toolbarHeight: 72,
-        title: Text(
-          _screens[_selectedScreenIndex]['title'] as String,
-          // _titles[_selectedScreenIndex],
-          style: TextStyles.titleHome,
-        ),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12),
-            child: IconButton(
-              icon: const Icon(Icons.filter_alt),
-              onPressed: () => Navigator.of(context)
-                  .pushNamed(AppRoutes.settings, arguments: false),
-              tooltip: 'Filter',
-            ),
-          ),
-        ],
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            bottom: Radius.circular(32),
-          ),
-        ),
+      // extendBodyBehindAppBar: true,
+      extendBody: true,
+      appBar: CustomStatusBars(
+        toolbarHeight: MediaQuery.of(context).size.width <= 461 ? 70 : 86,
+        title: _screens[_selectedScreenIndex]['title'] as String,
+        leading: Container(),
+        // actions: [
+        //   CustomAction(
+        //       icon: const Icon(Icons.filter_alt),
+        //       onPressed: () => Navigator.of(context)
+        //           .pushNamed(AppRoutes.settings, arguments: false),
+        //       tooltip: 'Filter')
+        // ],
       ),
       drawer: const MainDrawerWidget(isDrawerEnabled: true),
       body: _screens[_selectedScreenIndex]['screen'] as Widget,
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: AppColors.primary,
-        selectedItemColor: AppColors.selected,
-        unselectedItemColor: AppColors.background,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      bottomNavigationBar: CustomNavigationBars(
         currentIndex: _selectedScreenIndex,
-        onTap: _selectScreen,
-        iconSize: 26,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.category),
-            label: 'Categorias',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.star),
-            label: 'Favoritos',
-          ),
-        ],
+        onTabTapped: _selectScreen,
       ),
     );
   }

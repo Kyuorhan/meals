@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:meals/src/modules/screens/splash/splash_screen.dart';
 
 import 'src/data/dummy_data.dart';
 
 import 'src/modules/screens/revenues/revenues_detail_screen.dart';
 import 'src/modules/screens/category/category_screen.dart';
-import 'src/modules/screens/settings/settings_screen.dart';
+import 'src/modules/screens/filters/filters_screen.dart';
 import 'src/modules/screens/tabs_screen.dart';
 
 import 'src/shared/models/meal_model.dart';
@@ -63,12 +64,24 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+    SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(
+        statusBarColor: AppColors.transparent,
+        systemNavigationBarColor: AppColors.transparent,
+      ),
+    );
     return MaterialApp(
       title: 'Meals Stations',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.grey,
         primaryColor: AppColors.primary,
+        // textTheme: GoogleFonts.lexendDecaTextTheme(Theme.of(context).textTheme),
       ),
       initialRoute: "/splash",
       routes: {
@@ -84,7 +97,7 @@ class _MyAppState extends State<MyApp> {
               onToggleFavorite: _toggleFavorite,
               isFavorite: _isFavorite,
             ),
-        AppRoutes.settings: (context) => SettingsScreen(
+        AppRoutes.filters: (context) => FiltersScreen(
               settings: settings,
               onSettingsChanged: _filterMeals,
             ),
