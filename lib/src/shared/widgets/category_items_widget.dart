@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../utils/app_routes.dart';
 import '../models/category_model.dart';
-import '../themes/app_text_style.dart';
+import '../themes/app_scalable_text.dart';
 
 class CategoryItemsWidget extends StatelessWidget {
   const CategoryItemsWidget({
@@ -22,13 +22,13 @@ class CategoryItemsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      borderRadius: BorderRadius.circular(15),
       onTap: () => _selectRevenues(context),
+      borderRadius: BorderRadius.circular(15.0),
       splashColor: Theme.of(context).primaryColor,
       child: Container(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(20.0),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15),
+          borderRadius: BorderRadius.circular(15.0),
           gradient: LinearGradient(
             colors: [
               categoryModel.color.withOpacity(0.5),
@@ -38,9 +38,9 @@ class CategoryItemsWidget extends StatelessWidget {
             end: Alignment.bottomRight,
           ),
         ),
-        child: Text(
-          categoryModel.title,
-          style: TextStyles.titleCategoryItens,
+        child: ScalableText.subTitleCategory(
+          title: categoryModel.title,
+          context: context,
         ),
       ),
     );

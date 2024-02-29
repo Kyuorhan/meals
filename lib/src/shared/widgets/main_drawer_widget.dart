@@ -21,6 +21,7 @@ class MainDrawerWidget extends StatelessWidget {
       leading: Icon(
         icon,
         size: 26,
+        color: AppColors.secundary,
       ),
       title: Text(
         label,
@@ -58,10 +59,15 @@ class MainDrawerWidget extends StatelessWidget {
                 .pushReplacementNamed(AppRoutes.home, arguments: false),
           ),
           _createItem(
+            Icons.filter_alt,
+            'Filtros',
+            () => Navigator.of(context)
+                .pushReplacementNamed(AppRoutes.filters, arguments: true),
+          ),
+          _createItem(
             Icons.settings,
             'Configurações',
-            () => Navigator.of(context)
-                .pushReplacementNamed(AppRoutes.settings, arguments: true),
+            () => (),
           ),
         ],
       ),
