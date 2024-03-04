@@ -18,7 +18,7 @@ class CustomNavigationBars extends StatelessWidget {
     final navigatioBarScaler = MediaQuery.textScalerOf(context);
     final scaledNavigatioBar =
         navigatioBarScaler.scale(size.width <= 461 ? 96 : 112).roundToDouble();
-    final scaledPaddingNavigatioBar = scaledNavigatioBar * 0.32;
+    final scaledNavigatioBarPadding = scaledNavigatioBar * 0.32;
     final scaledIconSize = scaledNavigatioBar * 0.24;
     // final scaledIconSize = size.width * 0.052;
 
@@ -57,10 +57,10 @@ class CustomNavigationBars extends StatelessWidget {
       height: scaledNavigatioBar,
       elevation: 0.0,
       padding: EdgeInsets.only(
-        bottom: scaledPaddingNavigatioBar * 0.75,
-        left: scaledPaddingNavigatioBar * 1.25,
-        right: scaledPaddingNavigatioBar * 1.25,
-        top: scaledPaddingNavigatioBar * 0.25,
+        bottom: scaledNavigatioBarPadding * 0.75,
+        left: scaledNavigatioBarPadding * 1.12,
+        right: scaledNavigatioBarPadding * 1.12,
+        top: scaledNavigatioBarPadding * 0.25,
       ),
       // shape: const CircularNotchedRectangle(),
       shape: const AutomaticNotchedShape(

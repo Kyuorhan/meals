@@ -69,7 +69,7 @@ class _TabsScreenState extends State<TabsScreen> {
       // extendBodyBehindAppBar: true,
       extendBody: true,
       appBar: CustomStatusBars(
-        toolbarHeight: MediaQuery.of(context).size.width <= 461 ? 70 : 86,
+        context: context,
         title: _screens[_selectedScreenIndex]['title'] as String,
         leading: Container(),
         // actions: [
