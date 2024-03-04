@@ -29,7 +29,7 @@ class CategoryScreen extends StatelessWidget {
       backgroundColor: AppColors.shape,
       extendBodyBehindAppBar: true,
       appBar: CustomStatusBars(
-        toolbarHeight: MediaQuery.of(context).size.width <= 461 ? 70 : 86,
+        context: context,
         title: category.title,
         actions: [
           CustomAction(

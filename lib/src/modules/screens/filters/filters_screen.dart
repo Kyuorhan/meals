@@ -63,7 +63,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
     return Scaffold(
       backgroundColor: AppColors.shape,
       appBar: CustomStatusBars(
-        toolbarHeight: MediaQuery.of(context).size.width <= 440 ? 70 : 86,
+        context: context,
         title: 'Filtros',
         // title: Text(
         //   'Filtros',

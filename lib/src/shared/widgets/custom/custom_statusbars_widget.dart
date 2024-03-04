@@ -14,32 +14,28 @@ class CustomAction {
 class CustomStatusBars extends StatelessWidget implements PreferredSizeWidget {
   const CustomStatusBars({
     super.key,
+    required this.context,
     this.leading,
-    // this.leadingWidth,
-    this.toolbarHeight = kToolbarHeight,
     required this.title,
     this.actions,
   });
 
+  final BuildContext context;
   final Widget? leading;
-  // final double? leadingWidth;
-  final double toolbarHeight;
   final String title;
-  // final Widget title;
   final List<CustomAction>? actions;
 
+  TextScaler get statusBarScaler => MediaQuery.textScalerOf(context);
+  double get scaledStatusBar => statusBarScaler.scale(74).roundToDouble();
+
   @override
-  Size get preferredSize => Size.fromHeight(toolbarHeight <= 70 ? 70 : 86);
-  // Size get preferredSize => Size.fromHeight(toolbarHeight);
+  Size get preferredSize => Size.fromHeight(scaledStatusBar);
 
   @override
   Widget build(BuildContext context) {
-    // final textScaler = MediaQuery.textScalerOf(context);
-    // final scaledFontSize = textScaler.scale(fontSize);
-    // final int titleLength = title.length;
-    // final double fontScaler = double.parse(titleLength.toStringAsFixed(1));
-
     return LayoutBuilder(builder: (BuildContext context, constraints) {
+      // final scaledStatusBar = statusBarScaler.scale(70).roundToDouble();
+
       return AppBar(
         backgroundColor: AppColors.primary,
         shadowColor: AppColors.shape,
@@ -48,46 +44,24 @@ class CustomStatusBars extends StatelessWidget implements PreferredSizeWidget {
         elevation: 4,
         iconTheme: IconThemeData(
           color: AppColors.background,
-          size: preferredSize.height <= 70 ? 26 : 32,
+          size: preferredSize.height == 74 ? 26 : 32,
         ),
-        leadingWidth: preferredSize.height <= 70.0
-            ? kToolbarHeight * 1.25
-            : kToolbarHeight * 1.5,
-        toolbarHeight: preferredSize.height <= 70.0
-            ? kToolbarHeight * 1.25
-            : kToolbarHeight * 1.5,
+        leadingWidth: scaledStatusBar,
+        toolbarHeight: scaledStatusBar,
         leading: leading,
         title: ScalableText.titleHome(
           context: context,
           title: title,
         ),
-        // title: Text(
-        //   title,
-        //   maxLines: 2,
-        //   textAlign: TextAlign.center,
-        //   textScaler: textScaler,
-        //   style: TextStyles.titleHome,
-        //   // style: TextStyle(
-        //   //   fontFamily: 'LexendDeca',
-        //   //   fontSize: scaledFontSize,
-        //   //   // fontSize: TextScaler.linear(
-        //   //   //   fontScaler <= 1.2 ? 1.0 : 0.85,
-        //   //   // ).scale(
-        //   //   //   fontScaler <= 1.2 ? 24 : 22,
-        //   //   // ),
-        //   //   fontWeight: FontWeight.w500,
-        //   //   color: AppColors.secundary,
-        //   // ),
-        // ),
         actions: actions?.map((action) {
-          return IconButton(
-            padding: EdgeInsets.symmetric(
-              horizontal: preferredSize.height <= 70 ? 22 : 26,
-              vertical: preferredSize.height <= 70 ? 22 : 26,
+          return SizedBox(
+            height: scaledStatusBar,
+            width: scaledStatusBar,
+            child: IconButton(
+              icon: action.icon,
+              onPressed: action.onPressed,
+              tooltip: action.tooltip,
             ),
-            icon: action.icon,
-            onPressed: action.onPressed,
-            tooltip: action.tooltip,
           );
         }).toList(),
         shape: const RoundedRectangleBorder(

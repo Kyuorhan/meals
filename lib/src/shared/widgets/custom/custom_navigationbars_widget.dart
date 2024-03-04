@@ -15,6 +15,13 @@ class CustomNavigationBars extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
+    final navigatioBarScaler = MediaQuery.textScalerOf(context);
+    final scaledNavigatioBar =
+        navigatioBarScaler.scale(size.width <= 461 ? 96 : 112).roundToDouble();
+    final scaledNavigatioBarPadding = scaledNavigatioBar * 0.32;
+    final scaledIconSize = scaledNavigatioBar * 0.24;
+    // final scaledIconSize = size.width * 0.052;
+
     late List<BottomNavigationBarItem> selectNavigationBarItem = [
       BottomNavigationBarItem(
         icon: const Icon(Icons.menu_outlined),
@@ -29,7 +36,7 @@ class CustomNavigationBars extends StatelessWidget {
         icon: const Icon(Icons.home),
         activeIcon: Icon(
           Icons.home,
-          size: size.width / 17,
+          size: scaledIconSize * 1.1,
         ),
         label: 'Categorias',
         tooltip: 'Categorias',
@@ -38,7 +45,7 @@ class CustomNavigationBars extends StatelessWidget {
         icon: const Icon(Icons.star),
         activeIcon: Icon(
           Icons.star,
-          size: size.width / 17,
+          size: scaledIconSize * 1.1,
         ),
         label: 'Favoritos',
         tooltip: 'Favoritos',
@@ -47,14 +54,13 @@ class CustomNavigationBars extends StatelessWidget {
 
     return BottomAppBar(
       color: AppColors.transparent,
-      // height: size.width <= 461 ? size.width * 0.24 : size.width * 0.15,
-      height: size.width <= 461 ? 96 : 112,
+      height: scaledNavigatioBar,
       elevation: 0.0,
       padding: EdgeInsets.only(
-        bottom: 20.0,
-        left: size.width * 0.08,
-        right: size.width * 0.08,
-        top: 10.0,
+        bottom: scaledNavigatioBarPadding * 0.75,
+        left: scaledNavigatioBarPadding * 1.12,
+        right: scaledNavigatioBarPadding * 1.12,
+        top: scaledNavigatioBarPadding * 0.25,
       ),
       // shape: const CircularNotchedRectangle(),
       shape: const AutomaticNotchedShape(
@@ -63,7 +69,7 @@ class CustomNavigationBars extends StatelessWidget {
       ),
       child: Material(
         color: AppColors.transparent,
-        // borderRadius: const BorderRadius.all(Radius.circular(8.0)),
+        borderRadius: const BorderRadius.all(Radius.circular(8.0)),
         elevation: 8.5,
         child: ClipRRect(
           borderRadius: const BorderRadius.all(Radius.circular(8.0)),
@@ -76,7 +82,7 @@ class CustomNavigationBars extends StatelessWidget {
             unselectedItemColor: AppColors.background,
             currentIndex: currentIndex,
             onTap: onTabTapped,
-            iconSize: size.width / 18.5,
+            iconSize: scaledIconSize,
             selectedFontSize: 10.0,
             items: selectNavigationBarItem,
           ),

@@ -66,24 +66,27 @@ class RevenuesDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // EdgeInsets myPadding = MediaQuery.of(context).padding;
     final mealModel = ModalRoute.of(context)?.settings.arguments as MealModel;
 
     return LayoutBuilder(builder: (context, constraints) {
+      final revenuesScaler = MediaQuery.textScalerOf(context);
+      final scaledStatusBar = revenuesScaler.scale(74).roundToDouble();
+
+      final scaledRevenuesPadding = revenuesScaler.scale(12.0);
+      final scaledFloatingActionButton = revenuesScaler.scale(1.25);
+
       return Scaffold(
         backgroundColor: AppColors.shape,
         extendBodyBehindAppBar: true,
         extendBody: true,
         appBar: CustomStatusBars(
-          toolbarHeight: constraints.maxWidth <= 440 ? 70 : 86,
+          context: context,
           title: mealModel.title,
-          // title: '${kToolbarHeight}',
           actions: [
             CustomAction(
-              icon:
-                  Icon(isFavorite(mealModel) ? Icons.star : Icons.star_border),
+              icon: const Icon(Icons.filter_alt),
               onPressed: () =>
-                  Navigator.of(context).pushReplacementNamed(AppRoutes.home),
+                  Navigator.of(context).pushReplacementNamed(AppRoutes.filters),
             ),
           ],
         ),
@@ -92,7 +95,7 @@ class RevenuesDetailScreen extends StatelessWidget {
           children: [
             Container(
                 padding: EdgeInsets.only(
-                  top: constraints.maxWidth <= 440 ? 70 : 86,
+                  top: scaledStatusBar,
                 ),
                 child: Opacity(
                   opacity: 0.75,
@@ -102,13 +105,14 @@ class RevenuesDetailScreen extends StatelessWidget {
                   ),
                 )),
             Container(
-              margin: EdgeInsets.only(
-                top: constraints.maxWidth <= 440
-                    ? kToolbarHeight + 70
-                    : kToolbarHeight + 86,
-                left: 10,
-                right: 10,
-                bottom: kBottomNavigationBarHeight,
+              padding: EdgeInsets.only(
+                left: scaledRevenuesPadding,
+                top: scaledRevenuesPadding +
+                    scaledStatusBar +
+                    MediaQuery.of(context).padding.top,
+                right: scaledRevenuesPadding,
+                bottom: scaledRevenuesPadding +
+                    MediaQuery.of(context).padding.bottom,
               ),
               child: Card(
                 color: Colors.black26,
@@ -191,7 +195,11 @@ class RevenuesDetailScreen extends StatelessWidget {
           ],
         ),
         floatingActionButton: Transform.scale(
-          scale: 1.3,
+          scale: scaledFloatingActionButton,
+          alignment: Alignment(
+            scaledFloatingActionButton * 0.45,
+            scaledFloatingActionButton * 0.45,
+          ),
           child: FloatingActionButton(
             backgroundColor: AppColors.primary,
             foregroundColor: AppColors.secundary,
