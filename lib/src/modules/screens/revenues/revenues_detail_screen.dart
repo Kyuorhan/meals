@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../shared/models/meal_model.dart';
 import '../../../shared/themes/app_colors.dart';
+import '../../../shared/themes/app_scalable_text.dart';
 import '../../../shared/themes/app_text_style.dart';
 import '../../../shared/widgets/custom/custom_statusbars_widget.dart';
 import '../../../utils/app_routes.dart';
@@ -19,24 +20,33 @@ class RevenuesDetailScreen extends StatelessWidget {
   final bool Function(MealModel) isFavorite;
 
   Widget _createSectionTitle(BuildContext context, String title) {
+    final createSectionScaler = MediaQuery.textScalerOf(context);
+    final scaledCreateSectionPadding = createSectionScaler.scale(20.0);
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 20),
-      child: Text(
-        title,
-        style: TextStyles.titleMealDetail,
+      margin: EdgeInsets.symmetric(vertical: scaledCreateSectionPadding),
+      child: ScalableText.subTitleRevenues(
+        context: context,
+        title: title,
       ),
+      // child: Text(
+      //   title,
+      //   style: TextStyles.titleMealDetail,
+      // ),
     );
   }
 
-  Widget _createSectionContainer(Widget child) {
+  Widget _createSectionCardDetails(BuildContext context, Widget child) {
+    final createSectionScaler = MediaQuery.textScalerOf(context);
+    final scaledCreateSectionPadding = createSectionScaler.scale(16.0);
+
     return Container(
-      padding: const EdgeInsets.symmetric(
-        vertical: 20,
-        horizontal: 20,
+      padding: EdgeInsets.symmetric(
+        vertical: scaledCreateSectionPadding,
+        horizontal: scaledCreateSectionPadding,
       ),
       decoration: BoxDecoration(
           border: Border.all(color: Colors.white70),
-          borderRadius: BorderRadius.circular(10)),
+          borderRadius: BorderRadius.circular(15.0)),
       child: ShaderMask(
         shaderCallback: (Rect rect) {
           return const LinearGradient(
@@ -70,10 +80,21 @@ class RevenuesDetailScreen extends StatelessWidget {
 
     return LayoutBuilder(builder: (context, constraints) {
       final revenuesScaler = MediaQuery.textScalerOf(context);
-      final scaledStatusBar = revenuesScaler.scale(74).roundToDouble();
-
-      final scaledRevenuesPadding = revenuesScaler.scale(12.0);
-      final scaledFloatingActionButton = revenuesScaler.scale(1.25);
+      final scaledStatusBar =
+          revenuesScaler.scale(CustomStatusBars.maxHeight).roundToDouble();
+      // Defina o padding fora do card
+      final scaledCardPadding =
+          revenuesScaler.scale(constraints.maxWidth * 0.025).roundToDouble();
+      // Defina o padding dos items dentro do card
+      final scaledCardItemsPadding =
+          revenuesScaler.scale(constraints.maxWidth * 0.075);
+      // Defina o padding do card de ingredientes
+      final scaledCardIngredientsPadding = revenuesScaler.scale(8.5);
+      // Defina o tamanho do radius do CircleAvatar
+      final scaledCardStepsCircleAvatar = revenuesScaler.scale(20);
+      // Defina o tamanho e o padding do botão de favorito
+      final scaledFloatingActionButtonSize = revenuesScaler.scale(70);
+      final scaledFloatingActionButtonPadding = revenuesScaler.scale(12.0);
 
       return Scaffold(
         backgroundColor: AppColors.shape,
@@ -84,10 +105,10 @@ class RevenuesDetailScreen extends StatelessWidget {
           title: mealModel.title,
           actions: [
             CustomAction(
-              icon: const Icon(Icons.filter_alt),
-              onPressed: () =>
-                  Navigator.of(context).pushReplacementNamed(AppRoutes.filters),
-            ),
+                icon: const Icon(Icons.filter_alt),
+                onPressed: () => Navigator.of(context)
+                    .pushReplacementNamed(AppRoutes.filters),
+                tooltip: 'Filter'),
           ],
         ),
         body: Stack(
@@ -98,7 +119,7 @@ class RevenuesDetailScreen extends StatelessWidget {
                   top: scaledStatusBar,
                 ),
                 child: Opacity(
-                  opacity: 0.75,
+                  opacity: 0.65,
                   child: Image.network(
                     mealModel.imgUrl,
                     fit: BoxFit.cover,
@@ -106,43 +127,50 @@ class RevenuesDetailScreen extends StatelessWidget {
                 )),
             Container(
               padding: EdgeInsets.only(
-                left: scaledRevenuesPadding,
-                top: scaledRevenuesPadding +
-                    scaledStatusBar +
+                left: scaledCardPadding,
+                top: scaledCardPadding +
+                    CustomStatusBars.maxHeight +
                     MediaQuery.of(context).padding.top,
-                right: scaledRevenuesPadding,
-                bottom: scaledRevenuesPadding +
-                    MediaQuery.of(context).padding.bottom,
+                right: scaledCardPadding,
+                bottom:
+                    scaledCardPadding + MediaQuery.of(context).padding.bottom,
               ),
               child: Card(
-                color: Colors.black26,
-                shadowColor: Colors.black26,
-                surfaceTintColor: Colors.black26,
-                // margin: const EdgeInsets.all(15),
+                color: AppColors.black26,
+                shadowColor: AppColors.black26,
+                surfaceTintColor: AppColors.black26,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15),
+                  borderRadius: BorderRadius.circular(15.0),
                 ),
                 elevation: 4,
                 child: Container(
-                  margin:
-                      const EdgeInsets.only(left: 35, right: 35, bottom: 35),
+                  margin: EdgeInsets.only(
+                    left: scaledCardItemsPadding,
+                    right: scaledCardItemsPadding,
+                    bottom: scaledCardItemsPadding,
+                  ),
                   child: Column(
                     children: [
                       _createSectionTitle(context, 'Ingredientes'),
                       Flexible(
                         flex: 2,
-                        child: _createSectionContainer(
+                        child: _createSectionCardDetails(
+                          context,
                           ListView.builder(
-                            padding: const EdgeInsets.only(top: 0),
+                            padding: const EdgeInsets.only(
+                              top: 0,
+                              bottom: 80,
+                            ),
                             itemCount: mealModel.ingredients.length,
                             clipBehavior: Clip.antiAliasWithSaveLayer,
                             itemBuilder: (context, index) {
                               return Card(
                                 color: AppColors.primary,
                                 child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                    vertical: 8,
-                                    horizontal: 12,
+                                  padding: EdgeInsets.symmetric(
+                                    vertical: scaledCardIngredientsPadding,
+                                    horizontal:
+                                        scaledCardIngredientsPadding * 1.5,
                                   ),
                                   child: Text(
                                     mealModel.ingredients[index],
@@ -157,31 +185,46 @@ class RevenuesDetailScreen extends StatelessWidget {
                       _createSectionTitle(context, 'Passos'),
                       Flexible(
                         flex: 3,
-                        child: _createSectionContainer(
+                        child: _createSectionCardDetails(
+                          context,
                           ListView.builder(
-                            padding: const EdgeInsets.only(top: 0),
+                            padding: const EdgeInsets.only(
+                              top: 0,
+                              bottom: 80,
+                            ),
                             itemCount: mealModel.steps.length,
                             itemBuilder: (context, index) {
                               return ListTile(
                                 // minLeadingWidth: 1.0,
                                 contentPadding: const EdgeInsets.symmetric(
                                   vertical: 2,
-                                  horizontal: 2,
+                                  horizontal: 4,
                                 ),
                                 leading: CircleAvatar(
+                                  radius: scaledCardStepsCircleAvatar,
                                   backgroundColor: AppColors.primary,
-                                  child: Text(
-                                    '${index + 1}',
-                                    style: const TextStyle(
-                                      fontWeight: FontWeight.w600,
-                                      color: AppColors.secundary,
-                                    ),
+                                  child: ScalableText.subTitleRevenuesDetails(
+                                    context: context,
+                                    title: '${index + 1}',
+                                    color: AppColors.secundary,
                                   ),
+                                  // child: Text(
+                                  //   '${index + 1}',
+                                  //   style: const TextStyle(
+                                  //     fontWeight: FontWeight.w600,
+                                  //     color: AppColors.secundary,
+                                  //   ),
+                                  // ),
                                 ),
-                                title: Text(
-                                  mealModel.steps[index],
-                                  style: TextStyles.subTitleMealDetail,
+                                title: ScalableText.subTitleRevenuesDetails(
+                                  context: context,
+                                  title: mealModel.steps[index],
+                                  color: AppColors.background,
                                 ),
+                                // title: Text(
+                                //   mealModel.steps[index],
+                                //   style: TextStyles.subTitleMealDetail,
+                                // ),
                               );
                             },
                           ),
@@ -194,26 +237,27 @@ class RevenuesDetailScreen extends StatelessWidget {
             ),
           ],
         ),
-        floatingActionButton: Transform.scale(
-          scale: scaledFloatingActionButton,
-          alignment: Alignment(
-            scaledFloatingActionButton * 0.45,
-            scaledFloatingActionButton * 0.45,
-          ),
-          child: FloatingActionButton(
-            backgroundColor: AppColors.primary,
-            foregroundColor: AppColors.secundary,
-            hoverColor: AppColors.secundary,
-            splashColor: AppColors.shape,
-            elevation: 4,
-            mini: false,
-            onPressed: () {
-              // Ativa a função onToggleFavorite e passa o mealModel
-              onToggleFavorite(mealModel);
-              // Retorna o mealModel para a tela anterior (MealItemsWidget)
-              // Navigator.pop(context, mealModel);
-            },
-            child: Icon(isFavorite(mealModel) ? Icons.star : Icons.star_border),
+        floatingActionButton: Container(
+          margin: EdgeInsets.all(scaledFloatingActionButtonPadding),
+          height: scaledFloatingActionButtonSize,
+          width: scaledFloatingActionButtonSize,
+          child: FittedBox(
+            child: FloatingActionButton(
+              backgroundColor: AppColors.primary,
+              foregroundColor: AppColors.secundary,
+              hoverColor: AppColors.secundary,
+              splashColor: AppColors.shape,
+              elevation: 4,
+              // mini: false,
+              onPressed: () {
+                // Ativa a função onToggleFavorite e passa o mealModel
+                onToggleFavorite(mealModel);
+                // Retorna o mealModel para a tela anterior (MealItemsWidget)
+                // Navigator.pop(context, mealModel);
+              },
+              child:
+                  Icon(isFavorite(mealModel) ? Icons.star : Icons.star_border),
+            ),
           ),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
