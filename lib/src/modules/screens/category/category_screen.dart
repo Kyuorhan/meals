@@ -36,7 +36,7 @@ class CategoryScreen extends StatelessWidget {
             icon: const Icon(Icons.filter_alt),
             onPressed: () => Navigator.of(context)
                 .pushNamed(AppRoutes.filters, arguments: false),
-            tooltip: 'Filters',
+            tooltip: 'Filter',
           ),
         ],
       ),

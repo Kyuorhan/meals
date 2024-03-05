@@ -11,7 +11,10 @@ class CustomAction {
   CustomAction({required this.icon, required this.onPressed, this.tooltip});
 }
 
+// PreferredSizeWidget
 class CustomStatusBars extends StatelessWidget implements PreferredSizeWidget {
+  static double maxHeight = 0.0;
+
   const CustomStatusBars({
     super.key,
     required this.context,
@@ -25,8 +28,14 @@ class CustomStatusBars extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final List<CustomAction>? actions;
 
+  // Defina a altura do CustomStatusBars
+  final double statusBarsHeight = 76;
+
   TextScaler get statusBarScaler => MediaQuery.textScalerOf(context);
-  double get scaledStatusBar => statusBarScaler.scale(74).roundToDouble();
+  double get scaledStatusBar {
+    maxHeight = statusBarScaler.scale(statusBarsHeight).roundToDouble();
+    return maxHeight;
+  }
 
   @override
   Size get preferredSize => Size.fromHeight(scaledStatusBar);
@@ -34,7 +43,8 @@ class CustomStatusBars extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (BuildContext context, constraints) {
-      // final scaledStatusBar = statusBarScaler.scale(70).roundToDouble();
+      final scaledStatusBarPadding =
+          statusBarScaler.scale(scaledStatusBar).roundToDouble();
 
       return AppBar(
         backgroundColor: AppColors.primary,
@@ -44,10 +54,10 @@ class CustomStatusBars extends StatelessWidget implements PreferredSizeWidget {
         elevation: 4,
         iconTheme: IconThemeData(
           color: AppColors.background,
-          size: preferredSize.height == 74 ? 26 : 32,
+          size: preferredSize.height == statusBarsHeight ? 26 : 32,
         ),
-        leadingWidth: scaledStatusBar,
-        toolbarHeight: scaledStatusBar,
+        leadingWidth: scaledStatusBarPadding,
+        toolbarHeight: scaledStatusBarPadding,
         leading: leading,
         title: ScalableText.titleHome(
           context: context,
@@ -55,8 +65,8 @@ class CustomStatusBars extends StatelessWidget implements PreferredSizeWidget {
         ),
         actions: actions?.map((action) {
           return SizedBox(
-            height: scaledStatusBar,
-            width: scaledStatusBar,
+            height: scaledStatusBarPadding,
+            width: scaledStatusBarPadding,
             child: IconButton(
               icon: action.icon,
               onPressed: action.onPressed,
