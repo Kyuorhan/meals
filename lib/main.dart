@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:meals/src/modules/screens/splash/splash_screen.dart';
 
 import 'src/data/dummy_data.dart';
@@ -15,6 +16,9 @@ import 'src/shared/themes/app_colors.dart';
 import 'src/utils/app_routes.dart';
 
 void main() {
+  // Pré-carregue as fontes do Google Fonts
+  GoogleFonts.config.allowRuntimeFetching = true;
+
   runApp(const MyApp());
 }
 

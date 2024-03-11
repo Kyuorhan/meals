@@ -15,6 +15,11 @@ class CustomAction {
 class CustomStatusBars extends StatelessWidget implements PreferredSizeWidget {
   static double maxHeight = 0.0;
 
+  final BuildContext context;
+  final Widget? leading;
+  final String title;
+  final List<CustomAction>? actions;
+
   const CustomStatusBars({
     super.key,
     required this.context,
@@ -22,11 +27,6 @@ class CustomStatusBars extends StatelessWidget implements PreferredSizeWidget {
     required this.title,
     this.actions,
   });
-
-  final BuildContext context;
-  final Widget? leading;
-  final String title;
-  final List<CustomAction>? actions;
 
   // Defina a altura do CustomStatusBars
   final double statusBarsHeight = 76;
@@ -42,7 +42,7 @@ class CustomStatusBars extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(builder: (BuildContext context, constraints) {
+    return LayoutBuilder(builder: (context, constraints) {
       final scaledStatusBarPadding =
           statusBarScaler.scale(scaledStatusBar).roundToDouble();
 
@@ -56,9 +56,9 @@ class CustomStatusBars extends StatelessWidget implements PreferredSizeWidget {
           color: AppColors.background,
           size: preferredSize.height == statusBarsHeight ? 26 : 32,
         ),
+        leading: leading,
         leadingWidth: scaledStatusBarPadding,
         toolbarHeight: scaledStatusBarPadding,
-        leading: leading,
         title: ScalableText.titleHome(
           context: context,
           title: title,

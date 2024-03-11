@@ -4,18 +4,18 @@ import '../../shared/models/meal_model.dart';
 import '../../shared/themes/app_colors.dart';
 import '../../shared/widgets/custom/custom_navigationbars_widget.dart';
 import '../../shared/widgets/custom/custom_statusbars_widget.dart';
-import '../../shared/widgets/main_drawer_widget.dart';
+import '../../shared/widgets/sidebar_drawer_widget.dart';
 
 import 'favorite_screen.dart';
 import 'home_screen.dart';
 
 class TabsScreen extends StatefulWidget {
+  final List<MealModel> favoriteMeals;
+
   const TabsScreen({
     super.key,
     required this.favoriteMeals,
   });
-
-  final List<MealModel> favoriteMeals;
 
   @override
   State<TabsScreen> createState() => _TabsScreenState();
@@ -80,7 +80,7 @@ class _TabsScreenState extends State<TabsScreen> {
         //       tooltip: 'Filter')
         // ],
       ),
-      drawer: const MainDrawerWidget(isDrawerEnabled: true),
+      drawer: SideBarDrawer(context: context, isDrawerEnabled: true),
       body: _screens[_selectedScreenIndex]['screen'] as Widget,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: CustomNavigationBars(
