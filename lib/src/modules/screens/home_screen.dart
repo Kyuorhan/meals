@@ -16,34 +16,43 @@ class HomeScreen extends StatelessWidget {
   //   });
   // }P
 
+  // Defina a altura padrão dos items
+  final double categoryItemsHeight = 120;
+
   @override
   Widget build(BuildContext context) {
+    TextScaler categoryScaler = MediaQuery.textScalerOf(context);
+
     return LayoutBuilder(builder: (context, constraints) {
-      final categoryScaler = MediaQuery.textScalerOf(context);
       final scaledNavigatioBar = categoryScaler
           .scale(constraints.maxHeight <= 461 ? 96 : 112)
           .roundToDouble();
+
+      // final categoryItems = categoryScaler.scale(categoryItemsHeight);
       // Defina a largura e Espaçamento do GridView
-      final scaledCategory = constraints.maxWidth * 0.052;
+      final scaledCategoryPadding = constraints.maxWidth * 0.052;
       // Defina o número de colunas com base na largura da tela
       final crossAxisCount =
           max(min(constraints.maxWidth ~/ 180.toInt(), 2), 1);
-      // Defina a altura dos items com base na largura da tela
-      final mainAxisExtent = (constraints.maxHeight / 6.4).roundToDouble();
+      // Defina a altura dos items com base na altura da tela
+      final mainAxisExtent =
+          categoryScaler.scale(constraints.maxHeight / 7.2).roundToDouble();
 
       return GridView(
         padding: EdgeInsets.only(
           bottom: scaledNavigatioBar * 1.25,
-          left: scaledCategory,
-          right: scaledCategory,
-          top: scaledCategory,
+          left: scaledCategoryPadding,
+          right: scaledCategoryPadding,
+          top: scaledCategoryPadding,
         ),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: crossAxisCount,
-          // childAspectRatio: 3 / 2,
-          crossAxisSpacing: scaledCategory,
-          mainAxisSpacing: scaledCategory,
-          mainAxisExtent: mainAxisExtent <= 120 ? 120 : mainAxisExtent,
+          childAspectRatio: 3 / 2.15,
+          crossAxisSpacing: scaledCategoryPadding,
+          mainAxisSpacing: scaledCategoryPadding,
+          mainAxisExtent: mainAxisExtent <= categoryItemsHeight
+              ? categoryItemsHeight
+              : mainAxisExtent,
         ),
         children: dummyCategories.map((cat) {
           return CategoryItemsWidget(categoryModel: cat);

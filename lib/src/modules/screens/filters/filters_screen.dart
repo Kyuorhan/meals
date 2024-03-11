@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 import '../../../shared/models/settings_model.dart';
 import '../../../shared/themes/app_colors.dart';
-import '../../../shared/themes/app_text_style.dart';
+import '../../../shared/themes/app_scalable_text.dart';
 import '../../../shared/widgets/custom/custom_statusbars_widget.dart';
-import '../../../shared/widgets/main_drawer_widget.dart';
+import '../../../shared/widgets/sidebar_drawer_widget.dart';
 
 class FiltersScreen extends StatefulWidget {
   const FiltersScreen({
@@ -35,24 +36,42 @@ class _FiltersScreenState extends State<FiltersScreen> {
     bool value,
     Function(bool) onChanged,
   ) {
-    return SwitchListTile.adaptive(
-      contentPadding:
-          const EdgeInsets.symmetric(vertical: 5 / 0.75, horizontal: 25 / 0.75),
-      activeColor: AppColors.secundary,
-      activeTrackColor: AppColors.primary,
-      inactiveTrackColor: AppColors.shape,
-      inactiveThumbColor: AppColors.secundary,
-      title: Text(title, style: TextStyles.titleSettings),
-      subtitle: Text(
-        subTitle,
-        style: TextStyles.subTitleSettings,
-      ),
-      value: value,
-      onChanged: (value) {
-        onChanged(value);
-        widget.onSettingsChanged(settingsModel);
-      },
-    );
+    return LayoutBuilder(builder: (context, constraints) {
+      // TextScaler createSwitchScaler = MediaQuery.textScalerOf(context);
+
+      //  final scaledCreateSwitch = createSwitchScaler.scale(fontSize)
+
+      return SwitchListTile.adaptive(
+        contentPadding: EdgeInsets.symmetric(
+          vertical: constraints.maxWidth * 0.02,
+          horizontal: 25 / 0.55,
+        ),
+        // contentPadding: const EdgeInsets.symmetric(
+        //   vertical: 5 / 0.55,
+        //   horizontal: 25 / 0.55,
+        // ),
+        activeColor: AppColors.secundary,
+        activeTrackColor: AppColors.primary,
+        inactiveTrackColor: AppColors.shape,
+        inactiveThumbColor: AppColors.secundary,
+        title: ScalableText.titleFilter(context: context, title: title),
+        subtitle:
+            ScalableText.subTitleFilter(context: context, title: subTitle),
+        // title: Text(
+        //   title,
+        //   // style: TextStyles.titleSettings,
+        // ),
+        // subtitle: Text(
+        //   subTitle,
+        //   // style: TextStyles.subTitleSettings,
+        // ),
+        value: value,
+        onChanged: (value) {
+          onChanged(value);
+          widget.onSettingsChanged(settingsModel);
+        },
+      );
+    });
   }
 
   @override
@@ -65,10 +84,6 @@ class _FiltersScreenState extends State<FiltersScreen> {
       appBar: CustomStatusBars(
         context: context,
         title: 'Filtros',
-        // title: Text(
-        //   'Filtros',
-        //   style: TextStyles.titleHome,
-        // ),
         // actions: [
         //   CustomAction(
         //     icon: const Icon(
@@ -81,7 +96,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
         // ],
       ),
       drawer: isDrawerEnabled
-          ? const MainDrawerWidget(isDrawerEnabled: true)
+          ? SideBarDrawer(context: context, isDrawerEnabled: true)
           : null,
       body: Column(
         children: [

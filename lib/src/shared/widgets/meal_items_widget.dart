@@ -30,14 +30,19 @@ class MealItemsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
-    final textScaler = MediaQuery.textScalerOf(context);
-    final iconSize = textScaler.scale(22);
+    final mealItemsScaler = MediaQuery.textScalerOf(context);
+    final iconSize = mealItemsScaler.scale(22);
+    // Defina o padding dos items de refeições
+    final scaledMealItemsPadding = size.width * 0.052;
 
     return Padding(
       padding: EdgeInsets.only(
-        left: size.width * 0.04,
-        right: size.width * 0.04,
-        top: size.width * 0.045,
+        left: scaledMealItemsPadding,
+        right: scaledMealItemsPadding,
+        top: scaledMealItemsPadding,
+        // left: size.width * 0.04,
+        // right: size.width * 0.04,
+        // top: size.width * 0.045,
       ),
       child: InkWell(
         onTap: () => _selectMeal(context),

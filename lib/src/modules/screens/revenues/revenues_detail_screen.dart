@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../../../shared/models/meal_model.dart';
 import '../../../shared/themes/app_colors.dart';
 import '../../../shared/themes/app_scalable_text.dart';
-import '../../../shared/themes/app_text_style.dart';
 import '../../../shared/widgets/custom/custom_statusbars_widget.dart';
 import '../../../utils/app_routes.dart';
 
@@ -129,7 +128,9 @@ class RevenuesDetailScreen extends StatelessWidget {
               padding: EdgeInsets.only(
                 left: scaledCardPadding,
                 top: scaledCardPadding +
-                    CustomStatusBars.maxHeight +
+                    CustomStatusBars(context: context, title: '')
+                        .preferredSize
+                        .height +
                     MediaQuery.of(context).padding.top,
                 right: scaledCardPadding,
                 bottom:
@@ -172,10 +173,16 @@ class RevenuesDetailScreen extends StatelessWidget {
                                     horizontal:
                                         scaledCardIngredientsPadding * 1.5,
                                   ),
-                                  child: Text(
-                                    mealModel.ingredients[index],
-                                    style: TextStyles.subTitleMealDetailBlack,
+                                  child: ScalableText.subTitleRevenuesDetails(
+                                    context: context,
+                                    title: mealModel.ingredients[index],
+                                    color: AppColors.secundary,
                                   ),
+
+                                  // child: Text(
+                                  //   mealModel.ingredients[index],
+                                  //   style: TextStyles.subTitleMealDetailBlack,
+                                  // ),
                                 ),
                               );
                             },
