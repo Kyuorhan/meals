@@ -13,10 +13,18 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen>
     with SingleTickerProviderStateMixin {
+  double _opacityLevel = 0.0;
+
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 5), () {
+    Future.delayed(const Duration(milliseconds: 100), () {
+      setState(() {
+        _opacityLevel = 1.0;
+      });
+    });
+
+    Future.delayed(const Duration(seconds: 4), () {
       Navigator.of(context).pushReplacementNamed(AppRoutes.home);
     });
   }
@@ -26,27 +34,31 @@ class _SplashScreenState extends State<SplashScreen>
     Size mySize = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: AppColors.primary,
-      body: Stack(
-        children: [
-          Center(
-            child: Opacity(
-              opacity: 0.35,
-              child: Image.asset(
-                AppImages.union,
-                width: mySize.width,
-                height: mySize.height,
-                fit: BoxFit.cover,
+      body: AnimatedOpacity(
+        opacity: _opacityLevel,
+        duration: const Duration(seconds: 1), // Duração da animação (1 segundo)
+        child: Stack(
+          children: [
+            Center(
+              child: Opacity(
+                opacity: 0.35,
+                child: Image.asset(
+                  AppImages.union,
+                  width: mySize.width,
+                  height: mySize.height,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
-          ),
-          Center(
-            child: Image.asset(
-              AppImages.logoFull,
-              width: mySize.width,
-              height: mySize.height * 0.5,
+            Center(
+              child: Image.asset(
+                AppImages.logoFull,
+                width: mySize.width,
+                height: mySize.height * 0.5,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

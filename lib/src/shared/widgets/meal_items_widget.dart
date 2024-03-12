@@ -40,9 +40,6 @@ class MealItemsWidget extends StatelessWidget {
         left: scaledMealItemsPadding,
         right: scaledMealItemsPadding,
         top: scaledMealItemsPadding,
-        // left: size.width * 0.04,
-        // right: size.width * 0.04,
-        // top: size.width * 0.045,
       ),
       child: InkWell(
         onTap: () => _selectMeal(context),
