@@ -83,7 +83,7 @@ class ScalableText {
       title,
       style: TextStyles.lexendDeca(
         fontSize: textScalers.scale(16),
-        fontWeight: FontWeight.w500,
+        fontWeight: FontWeight.w600,
         color: AppColors.secundary,
       ),
     );
@@ -97,9 +97,9 @@ class ScalableText {
 
     return Text(
       title,
-      style: TextStyles.lexendDeca(
+      style: TextStyles.inter(
         fontSize: textScalers.scale(15),
-        fontWeight: FontWeight.w400,
+        fontWeight: FontWeight.w600,
         color: AppColors.background.withOpacity(0.9),
       ),
     );
