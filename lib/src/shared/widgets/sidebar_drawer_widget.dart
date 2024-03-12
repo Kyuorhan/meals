@@ -21,15 +21,14 @@ class SideBarDrawer extends StatelessWidget {
   TextScaler get sideBarScaler => MediaQuery.textScalerOf(context);
   double get scaledSideBar => sideBarScaler.scale(sideBarWidth).roundToDouble();
 
-  Widget _createItem(
-      BuildContext context, IconData icon, String label, Function() onTap) {
+  Widget _createItem(IconData icon, String label, Function() onTap) {
     final scaledCreateItemPadding =
         sideBarScaler.scale(scaledSideBar).roundToDouble();
 
     return ListTile(
       contentPadding: EdgeInsets.symmetric(
-        vertical: scaledCreateItemPadding * 0.048,
-        horizontal: scaledCreateItemPadding * 0.056,
+        vertical: scaledCreateItemPadding * 0.056,
+        horizontal: scaledCreateItemPadding * 0.068,
       ),
       leading: Padding(
         padding: EdgeInsets.all(sideBarScaler.scale(8.0)),
@@ -49,60 +48,55 @@ class SideBarDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(builder: (context, constraints) {
-      final scaledDrawer = sideBarScaler.scale(scaledSideBar).roundToDouble();
-
-      return Drawer(
-        backgroundColor: AppColors.shape,
-        surfaceTintColor: AppColors.primary,
-        width: scaledDrawer,
-        elevation: 4.0,
-        child: Column(
-          children: [
-            Container(
-              alignment: Alignment.bottomCenter,
-              decoration: BoxDecoration(
-                boxShadow: [
-                  BoxShadow(
-                    color: AppColors.black.withOpacity(0.2),
-                    spreadRadius: 1,
-                    blurRadius: 3,
-                    offset: const Offset(0, 2),
-                  )
-                ],
-                color: AppColors.drawer,
-              ),
-              height: scaledDrawer * 0.56,
-              width: double.infinity,
-              padding: EdgeInsets.all(scaledDrawer * 0.125),
-              child: ScalableText.titleDrawer(
-                context: context,
-                title: 'Vamos Cozinhar?',
-              ),
+    final scaledDrawer = sideBarScaler.scale(scaledSideBar).roundToDouble();
+    return Drawer(
+      backgroundColor: AppColors.shape,
+      surfaceTintColor: AppColors.primary,
+      width: scaledDrawer,
+      elevation: 2.0,
+      shadowColor: AppColors.black.withOpacity(0.85),
+      child: Column(
+        children: [
+          Container(
+            alignment: Alignment.bottomCenter,
+            decoration: BoxDecoration(
+              boxShadow: [
+                BoxShadow(
+                  color: AppColors.black.withOpacity(0.2),
+                  spreadRadius: 1,
+                  blurRadius: 3,
+                  offset: const Offset(0, 2),
+                )
+              ],
+              color: AppColors.drawer,
             ),
-            _createItem(
-              context,
-              Icons.restaurant,
-              'Refeições',
-              () => Navigator.of(context)
-                  .pushReplacementNamed(AppRoutes.home, arguments: false),
+            height: scaledDrawer * 0.56,
+            width: double.infinity,
+            padding: EdgeInsets.all(scaledDrawer * 0.125),
+            child: ScalableText.titleDrawer(
+              context: context,
+              title: 'Vamos Cozinhar?',
             ),
-            _createItem(
-              context,
-              Icons.filter_alt,
-              'Filtros',
-              () => Navigator.of(context)
-                  .pushReplacementNamed(AppRoutes.filters, arguments: true),
-            ),
-            _createItem(
-              context,
-              Icons.settings,
-              'Configurações',
-              () => (),
-            ),
-          ],
-        ),
-      );
-    });
+          ),
+          _createItem(
+            Icons.restaurant,
+            'Refeições',
+            () => Navigator.of(context)
+                .pushReplacementNamed(AppRoutes.home, arguments: false),
+          ),
+          _createItem(
+            Icons.filter_alt,
+            'Filtros',
+            () => Navigator.of(context)
+                .pushReplacementNamed(AppRoutes.filters, arguments: true),
+          ),
+          _createItem(
+            Icons.settings,
+            'Configurações',
+            () => (),
+          ),
+        ],
+      ),
+    );
   }
 }
