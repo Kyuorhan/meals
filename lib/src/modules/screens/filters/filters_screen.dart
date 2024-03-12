@@ -30,52 +30,67 @@ class _FiltersScreenState extends State<FiltersScreen> {
     settingsModel = widget.settings;
   }
 
-  Widget _createSwitch(
-    String title,
-    String subTitle,
-    bool value,
-    Function(bool) onChanged,
-  ) {
+  Widget _createSwitch({
+    required String title,
+    required String subTitle,
+    Widget? secondary,
+    required bool value,
+    required Function(bool) onChanged,
+  }) {
     return LayoutBuilder(builder: (context, constraints) {
-      // TextScaler createSwitchScaler = MediaQuery.textScalerOf(context);
+      TextScaler switchScaler = MediaQuery.textScalerOf(context);
 
-      //  final scaledCreateSwitch = createSwitchScaler.scale(fontSize)
+      final scaledSwitchPadding =
+          switchScaler.scale(constraints.maxWidth * 0.052).roundToDouble();
 
       return SwitchListTile.adaptive(
-        contentPadding: EdgeInsets.symmetric(
-          vertical: constraints.maxWidth * 0.02,
-          horizontal: 25 / 0.55,
-        ),
-        // contentPadding: const EdgeInsets.symmetric(
-        //   vertical: 5 / 0.55,
-        //   horizontal: 25 / 0.55,
-        // ),
-        activeColor: AppColors.secundary,
-        activeTrackColor: AppColors.primary,
-        inactiveTrackColor: AppColors.shape,
-        inactiveThumbColor: AppColors.secundary,
-        title: ScalableText.titleFilter(context: context, title: title),
-        subtitle:
-            ScalableText.subTitleFilter(context: context, title: subTitle),
-        // title: Text(
-        //   title,
-        //   // style: TextStyles.titleSettings,
-        // ),
-        // subtitle: Text(
-        //   subTitle,
-        //   // style: TextStyles.subTitleSettings,
-        // ),
         value: value,
         onChanged: (value) {
           onChanged(value);
           widget.onSettingsChanged(settingsModel);
         },
+        activeColor: AppColors.secundary,
+        activeTrackColor: AppColors.primary,
+        inactiveTrackColor: AppColors.transparent,
+        inactiveThumbColor: AppColors.secundary,
+        // tileColor: AppColors.secundary,
+        selectedTileColor: AppColors.secundary,
+        title: ScalableText.titleFilter(
+          context: context,
+          title: title,
+        ),
+        subtitle: ScalableText.subTitleFilter(
+          context: context,
+          title: subTitle,
+        ),
+        contentPadding: EdgeInsets.symmetric(
+          vertical: scaledSwitchPadding * 0.7,
+          horizontal: scaledSwitchPadding,
+        ),
+        // title: Text(
+        secondary: secondary,
+        // secondary: Icon(
+        //   Icons.local_dining,
+        //   size: 38,
+        //   color: AppColors.secundary.withOpacity(0.45),
+        // ),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20.0),
+        ),
       );
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+
+    TextScaler filterScaler = MediaQuery.textScalerOf(context);
+
+    final double scaledSwitchPadding =
+        filterScaler.scale(size.width * 0.042).roundToDouble();
+    // final double scaledIconSize = filterScaler.scale(32.0).roundToDouble();
+
     final bool isDrawerEnabled =
         ModalRoute.of(context)?.settings.arguments as bool? ?? false;
 
@@ -102,32 +117,35 @@ class _FiltersScreenState extends State<FiltersScreen> {
         children: [
           Expanded(
             child: ListView(
-              padding: const EdgeInsets.symmetric(vertical: 10),
+              padding: EdgeInsets.all(scaledSwitchPadding),
               children: [
                 _createSwitch(
-                  'Sem Glutén',
-                  'Só exibe refeições sem glúten!',
-                  settingsModel.isGlutenFree,
-                  (value) => setState(() => settingsModel.isGlutenFree = value),
+                  title: 'Sem Glutén',
+                  subTitle: 'Só exibe refeições sem glúten!',
+                  value: settingsModel.isGlutenFree,
+                  onChanged: (value) =>
+                      setState(() => settingsModel.isGlutenFree = value),
                 ),
                 _createSwitch(
-                  'Sem Lactose',
-                  'Só exibe refeições sem lactose!',
-                  settingsModel.isLactoseFree,
-                  (value) =>
+                  title: 'Sem Lactose',
+                  subTitle: 'Só exibe refeições sem lactose!',
+                  value: settingsModel.isLactoseFree,
+                  onChanged: (value) =>
                       setState(() => settingsModel.isLactoseFree = value),
                 ),
                 _createSwitch(
-                  'Vegana',
-                  'Só exibe refeições veganas!',
-                  settingsModel.isVegan,
-                  (value) => setState(() => settingsModel.isVegan = value),
+                  title: 'Vegana',
+                  subTitle: 'Só exibe refeições veganas!',
+                  value: settingsModel.isVegan,
+                  onChanged: (value) =>
+                      setState(() => settingsModel.isVegan = value),
                 ),
                 _createSwitch(
-                  'Vegetariana',
-                  'Só exibe refeições vegetarianas!',
-                  settingsModel.isVegetarian,
-                  (value) => setState(() => settingsModel.isVegetarian = value),
+                  title: 'Vegetariana',
+                  subTitle: 'Só exibe refeições vegetarianas!',
+                  value: settingsModel.isVegetarian,
+                  onChanged: (value) =>
+                      setState(() => settingsModel.isVegetarian = value),
                 ),
               ],
             ),
