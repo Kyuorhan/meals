@@ -1,9 +1,8 @@
-<div style="padding: 20px;">
-    <p align="center">
-        <img alt="Meal Station" src=".github/mealstations-logo.png"
-        style="border-radius: 12px; ">
-    </p>
-</div>
+<br>
+
+<p align="center">
+    <img alt="Meal Station" src=".github/mealstations-logo.png" height="320px">
+</p>
 
 <p align="center">
     <img src="https://img.shields.io/github/stars/Kyuorhan/meals?label=stars&message=MIT&color=000000&labelColor=8257e5" alt="Stars">
