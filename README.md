@@ -1,5 +1,5 @@
 <p align="center">
-    <img alt="Meal Station" src=".github/mealstations-logo.png" width="320px">
+    <img alt="Meal Station" src=".github/mealstations-logo.png" height="320px">
 </p>
 
 <p align="center">
