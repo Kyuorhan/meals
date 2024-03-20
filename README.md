@@ -14,6 +14,8 @@
 
 ##
 
+<br>
+
 <p> 
 
   >- [Sobre](#sobre-) 📖
@@ -41,6 +43,9 @@ O projeto **Meal Station** foi desenvolvido para facilitar o ambiente de estaç�
 </p>
 
 <p align="center">O Layout foi desenvolvido por <a href="https://www.instagram.com/kyuorhan">Jhonny Kyuorhan</a>, e você pode acessá-lo no Figma:</p>
+
+<br>
+
 <p> 
     
   >- [Mobile](https://www.figma.com/file/kLK7FYnWKMoN68sQXcSniu/PayFlow) 📱
