@@ -8,7 +8,9 @@
     <img  src="https://img.shields.io/static/v1?label=license&message=MIT&color=000000&labelColor=8257e5" alt="License">
 </div>
 
-### **<h3 align="center">Tópicos 📋</h3>**
+<br>
+
+### <h3 align="center">Tópicos 📋</h3>
 
 ##
 
@@ -20,7 +22,7 @@
 </p>
 
 
-### **<h3 align="center">Sobre 📖</h3>**
+### <h3 align="center">Sobre 📖</h3>
 
 ##
    
@@ -29,7 +31,7 @@ O projeto **Meal Station** foi desenvolvido para facilitar o ambiente de estaç�
 
 <br>
 
-### **<h3 align="center">Layout 📋</h3>**
+### <h3 align="center">Layout 📋</h3>
 
 ##
 
@@ -44,7 +46,7 @@ O projeto **Meal Station** foi desenvolvido para facilitar o ambiente de estaç�
 </p>
 
 
-### **<h3 align="center">Como Usar 🤔</h3>**
+### <h3 align="center">Como Usar 🤔</h3>
 
 ##
 
