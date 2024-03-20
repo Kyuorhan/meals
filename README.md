@@ -21,6 +21,7 @@
   >- [Como Usar](#como-usar-) 🤔    
 </p>
 
+<br>
 
 ### <h3 align="center">Sobre 📖</h3>
 
@@ -45,6 +46,7 @@ O projeto **Meal Station** foi desenvolvido para facilitar o ambiente de estaç�
   >- [Mobile](https://www.figma.com/file/kLK7FYnWKMoN68sQXcSniu/PayFlow) 📱
 </p>
 
+<br>
 
 ### <h3 align="center">Como Usar 🤔</h3>
 
