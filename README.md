@@ -2,16 +2,17 @@
     <img alt="Meal Station" src=".github/mealstations-splash.png" >
 </p>
 
+###
+
 <div align="center">
-    <img src="https://img.shields.io/github/stars/Kyuorhan/meals?label=stars&message=MIT&color=000000&labelColor=8257e5" alt="Stars">
-    <img src="https://img.shields.io/github/forks/Kyuorhan/meals?label=forks&message=MIT&color=000000&labelColor=8257e5" alt="Forks">     
-    <img  src="https://img.shields.io/static/v1?label=license&message=MIT&color=000000&labelColor=8257e5" alt="License">
+    <img alt="Stars" height="22em" src="https://img.shields.io/github/stars/Kyuorhan/meals?label=stars&message=MIT&color=000000&labelColor=8257e5">
+    <img alt="Forks" height="22em" src="https://img.shields.io/github/forks/Kyuorhan/meals?label=forks&message=MIT&color=000000&labelColor=8257e5">     
+    <img alt="License" height="22em" src="https://img.shields.io/static/v1?label=license&message=MIT&color=000000&labelColor=8257e5">
 </div>
 
 <br>
 
 ### <h3 align="center">Tópicos 📋</h3>
-
 ##
 
 <br>
@@ -23,19 +24,28 @@
   >- [Como Usar](#como-usar-) 🤔    
 </p>
 
-<br>
+###
 
 ### <h3 align="center">Sobre 📖</h3>
 
 ##
+
+###
    
-O projeto **Meal Station** foi desenvolvido para facilitar o ambiente de estação de refeição. Assim como no shopping ou lugares que tem centro de refeições que faz o projetos ser inéditos e inspirador. 
-> - O **Meal Station** se trata de um app mobile feito em Flutter & Dart, contendo recursos como o uso de Animações e Estilizações Personalizadas, entre vários outros pontos, como o uso do SharedPreferences.
+O projeto **Meal Station** foi desenvolvido de um propósito de espalhar conhecimento na tecnologia. Além da intensa rotina de estudos, planejamentos, muitas conexões e networking, interagindo com varias comunidades.
 
-<br>
+###
 
-### <h3 align="center">Layout 📋</h3>
+>- O **Meal Station** é um projeto elaborado e bem pensado para facilitar o ambiente de estação de refeição, assim como consultar todos tipos de lanchonetes, refeiçôes, cardapios e entre outros em um só lugar.<br>
+   **Exemplo:** No Shopping ou lugares que tem centro de refeições, assim nos faz pensar que o projeto seja uma fonte inovador e que tem grande ideias inspirador. 
+  
+###
 
+>- O **Meal Station** se trata de um app mobile feito em **Flutter & Dart** para Estação de Refeição, contendo recursos como o uso de **Animações** e **Estilizações Personalizadas**, entre vários outros pontos, como o uso do **SharedPreferences**.
+
+###
+
+### <h3 align="center">Layout 🎨</h3>
 ##
 
 <p align="center">
@@ -48,19 +58,18 @@ O projeto **Meal Station** foi desenvolvido para facilitar o ambiente de estaç�
 
 <p> 
     
-  >- [Mobile](https://www.figma.com/file/kLK7FYnWKMoN68sQXcSniu/PayFlow) 📱
+  >- [Mobile](https://www.figma.com/community/file/1352388163173966368) 📱
 </p>
 
 <br>
 
 ### <h3 align="center">Como Usar 🤔</h3>
-
 ##
 
 Clone esse repositório:
 ``` 
 $ git clone https://github.com/Kyuorhan/meals
-```    
+```   
 Entre no diretório:
 ``` 
 $ cd meals
